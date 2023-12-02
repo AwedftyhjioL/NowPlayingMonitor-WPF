@@ -121,7 +121,7 @@
   <data name="Language_36x36" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACQAAAAkCAYAAADhAJiYAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
-        wgAADsIBFShKgAAAA9BJREFUWEftV0to1FAUTa2o+FuJVASLH6pUJ2ktuHEhbhREFCkFXShVVFyIiAsX
+        wQAADsEBuJFr7QAAA9BJREFUWEftV0to1FAUTa2o+FuJVASLH6pUJ2ktuHEhbhREFCkFXShVVFyIiAsX
         uhgFP/MybbWiIKJVRCzMSoq0dt5Lx2JBF1pEXPlHVKQo4her1vHc5M406WSmyTi60QOHJPe9e+/Ju/e9
         yWj/UQwaEuny6mhqciHq8e5JPP3PYV5r53jDVK2GkB91oX4Upvy20LTmsuufgSHUCQhKB2YsuZtdS4+G
         hkQ5BH3yTZyPQlrsXnrYfYFS+CbOR6G+zhd9UzhEaVGUIFA3VZthWgfDUo/JXbVxq5LT56JYQb/JD4bZ
@@ -139,5 +139,9 @@
         L0YtWTGoNZUOEbSTsmJwMu/j4YIItEKhgVMYzfowrBgCBLWDb/Od5EUDQlA+CBLqEb11IJryMq50eLZw
         mNIB/0wW0dKH5AB69ZjfV0BJQH0QhiUv0z8CTfsFQ5NpHMBsR/wAAAAASUVORK5CYII=
 </value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="Tray" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Tray.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

@@ -4,16 +4,22 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:NowPlayingMonitor_WPF"
+        xmlns:tb="http://www.hardcodet.net/taskbar"
         mc:Ignorable="d"
-        Title="NowPlayingMonitor-WPF" Height="450" Width="800" ResizeMode="CanResizeWithGrip" MinWidth="800" MinHeight="450">
+        Title="NowPlayingMonitor-WPF" 
+        Icon="pack://application:,,,/NowPlayingMonitor-WPF;component/Resources/image/Tray.ico"
+        Height="450" Width="800" ResizeMode="CanResizeWithGrip" MinWidth="800" MinHeight="450">
+
     <Grid Background="#FF3A393A">
 
 
-        <TabControl TabStripPlacement="Left" Background="#FF3A393A" Grid.ColumnSpan="2" Grid.RowSpan="3" >
+        <TabControl TabStripPlacement="Left" Background="#FF3A393A" Grid.ColumnSpan="2" Grid.RowSpan="3" Panel.ZIndex="-1" >
+
             <TabControl.Resources>
                 <Style TargetType="TabItem">
-                    <Setter Property="Height" Value="30"/>
-                    <Setter Property="Width" Value="80"/>
+                    <Setter Property="Height" Value="40"/>
+                    <Setter Property="MinWidth" Value="260"/>
+                    <Setter Property="MaxWidth" Value="260"/>
                     <Setter Property="Background" Value="#FF4C4C4C"/>
                     <Setter Property="BorderBrush" Value="#FFACACAC"/>
                     <Setter Property="Foreground" Value="White"/>
@@ -25,51 +31,104 @@
                     </Style.Triggers>
                 </Style>
             </TabControl.Resources>
+
+
+            <TabItem Header="{x:Static local:Strings.Welcome}" 
+                     Margin="-1,14,-1,-14" FontSize="16" MinHeight="40" MinWidth="100">
+                <Grid Margin="10,10,60,10">
+
+                    <Label Content="NowPlayingMonitor-WPF" HorizontalAlignment="Center" Margin="0,22,0,0" 
+                           VerticalAlignment="Top" Foreground="White" FontWeight="Bold" FontSize="20"/>
+
+                    <TextBlock TextWrapping="Wrap" Text="{x:Static local:Strings.Start_Page_Words}"
+                                   Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Top" 
+                                   MaxWidth="500" Margin="0,76,0,0">
+                    </TextBlock>
+
+
+
+                    <Border BorderBrush="#FFFFFDFD" BorderThickness="2,2,2,2" CornerRadius="4,4,4,4"/>
+                </Grid>
+
+            </TabItem>
+
+
             <TabItem Header="{x:Static local:Strings.General}"
-                     Margin="-1,14,1,-14">
-                <Grid Margin="10,10,10,10">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="160*"/>
-                        <ColumnDefinition Width="13*"/>
-                    </Grid.ColumnDefinitions>
-                    
-                    <Button x:Name="LanguageButton" HorizontalAlignment="Center" VerticalAlignment="Top" 
-                            Margin="0,10,0,0"  Grid.Column="1" Height="36" Width="36" 
-                            VerticalContentAlignment="Center" 
-                            MinWidth="36" MinHeight="36" MaxWidth="36" MaxHeight="36" 
-                            BorderThickness="0,0,0,0" Click="LanguageButton_Click">
-                        <Button.Content>
-                            <Image Stretch="Fill" 
-                                    Source="pack://application:,,,/NowPlayingMonitor-WPF;component/Resources/image/Language_36x36.png" HorizontalAlignment="Center" VerticalAlignment="Center" />
-                        </Button.Content>
-                        <Button.Template>
-                            <ControlTemplate TargetType="{x:Type Button}">
-                                <Border BorderThickness="0" BorderBrush="White" CornerRadius="4" 
-                                        Background="{TemplateBinding Background}">
-                                    <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                                </Border>
-                            </ControlTemplate>
-                        </Button.Template>
-                        <Button.ContextMenu>
-                            <ContextMenu>
-                                <MenuItem Header="简体中文" Click="LanguageMenuItem_Click" Tag="zh-Hans"/>
-                                <MenuItem Header="English" Click="LanguageMenuItem_Click" Tag="en"/>
-                                
-                            </ContextMenu>
-                        </Button.ContextMenu>
-                    </Button>
-                    
+                     Margin="-1,14,-1,-14" FontSize="16" MinHeight="40" MinWidth="100">
+                <Grid Margin="10,10,60,10">
+
+                    <Border BorderBrush="#FFFFFDFD" BorderThickness="2,2,2,2" CornerRadius="4,4,4,4"/>
+
+                    <CheckBox x:Name="CheckBoxSilentStart" Content="{x:Static local:Strings.Silent_Start}" 
+                              HorizontalAlignment="Left" Margin="73,53,0,0" VerticalAlignment="Top" 
+                              Checked="CheckBoxSilentStart_Checked" Unchecked="CheckBoxSilentStart_Unchecked" 
+                              Foreground="White" FontSize="16"/>
+
+                    <CheckBox x:Name="CheckBoxAlwaysMinimizeToTray" Content="{x:Static local:Strings.AlwaysMinimizeToTray}" 
+                              HorizontalAlignment="Left" Margin="73,94,0,0" VerticalAlignment="Top" 
+                              Checked="CheckBoxAlwaysMinimizeToTray_Checked" Unchecked="CheckBoxAlwaysMinimizeToTray_Unchecked" 
+                              Foreground="White" FontSize="16"/>        
+
                 </Grid>
 
             </TabItem>
-            <TabItem Header="{x:Static local:Strings.Window_Title}" 
-                     Margin="-1,14,-1,-14" Width="NaN">
-                <Grid Margin="10,10,10,10">
-                    
-                    
+
+
+
+            <TabItem Header="{x:Static local:Strings.Window_Monitor}" 
+                    Margin="-1,14,-1,-14" Width="NaN" FontSize="16" MinHeight="40" MinWidth="100">
+                <Grid Margin="10,10,60,10">
+
+
+
+                    <Border BorderBrush="#FFFFFDFD" BorderThickness="2,2,2,2" CornerRadius="4,4,4,4"/>
                 </Grid>
 
             </TabItem>
+
         </TabControl>
+
+        <Button x:Name="LanguageButton" HorizontalAlignment="Right" VerticalAlignment="Top" 
+                Margin="10,15,15,0"  Grid.Column="1" Height="36" Width="36" 
+                VerticalContentAlignment="Center" 
+                MinWidth="36" MinHeight="36" MaxWidth="36" MaxHeight="36" 
+                BorderThickness="0,0,0,0" Click="LanguageButton_Click"> 
+            <Button.Content>
+                <Image Stretch="Fill" 
+                       Source="pack://application:,,,/NowPlayingMonitor-WPF;component/Resources/image/Language_36x36.png" 
+                       VerticalAlignment="Center" HorizontalAlignment="Center" />   
+            </Button.Content>
+            <Button.Template>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border BorderThickness="0" BorderBrush="White" CornerRadius="4" 
+                    Background="{TemplateBinding Background}">
+                        <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                    </Border>
+                </ControlTemplate>
+            </Button.Template>
+            <Button.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="简体中文" Click="LanguageMenuItem_Click" Tag="zh-Hans"/>
+                    <MenuItem Header="English" Click="LanguageMenuItem_Click" Tag="en"/>
+                </ContextMenu>
+            </Button.ContextMenu>
+        </Button>
+
+
+        <tb:TaskbarIcon x:Name="MyNotifyIcon"
+                        IconSource="pack://application:,,,/NowPlayingMonitor-WPF;component/Resources/image/Tray.ico"
+                        ToolTipText="NowPlayingMonitor-WPF"
+                        MenuActivation="RightClick" Panel.ZIndex="1" MaxWidth="0" MaxHeight="0" HorizontalAlignment="Left" VerticalAlignment="Top">
+            <tb:TaskbarIcon.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="{x:Static local:Strings.Show_App}" Click="TrayMenuItem_Open_Click"/>
+                    <MenuItem Header="{x:Static local:Strings.Exit}" Click="TrayMenuItem_Exit_Click"/>
+                </ContextMenu>
+            </tb:TaskbarIcon.ContextMenu>
+        </tb:TaskbarIcon>
+
+
     </Grid>
+
+
 </Window>

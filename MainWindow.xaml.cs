@@ -9,6 +9,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Drawing;
+using Hardcodet.Wpf.TaskbarNotification;
 
 namespace NowPlayingMonitor_WPF
 {
@@ -20,27 +22,30 @@ namespace NowPlayingMonitor_WPF
 
         public MainWindow()
         {
-            ApplyCultureInfo();
+            LoadCultureInfo();
 
             InitializeComponent();
-            ReloadLastApplicationSize();
-            ApplySilenceStart();
+
+            LoadWindowSettings();
+            LoadAppSettings();
 
             ApplyExtraEvent();
+
         }
 
 
         protected override void OnClosed(EventArgs e)
         {
-            SaveApplicationSize();
+            SaveWindowSettings();
+            SaveAppSettings();
             base.OnClosed(e);
         }
 
         protected void ApplyExtraEvent()
         {
-
+            MyNotifyIcon.TrayMouseDoubleClick += MyNotifyIcon_TrayMouseDoubleClick;
         }
 
-
+        
     }
 }

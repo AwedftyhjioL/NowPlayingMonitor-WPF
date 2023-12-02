@@ -106,5 +106,17 @@ namespace NowPlayingMonitor_WPF.Properties {
                 this["IsStartWithMinimize"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool IsMinimizeToTrayWhenClosed {
+            get {
+                return ((bool)(this["IsMinimizeToTrayWhenClosed"]));
+            }
+            set {
+                this["IsMinimizeToTrayWhenClosed"] = value;
+            }
+        }
     }
 }

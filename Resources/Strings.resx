@@ -135,4 +135,25 @@
   <data name="ApplicationRestartWarning" xml:space="preserve">
     <value>Need restart application to change language, Continue?</value>
   </data>
+  <data name="Silent_Start" xml:space="preserve">
+    <value>Silent Start</value>
+  </data>
+  <data name="Start_Page_Words" xml:space="preserve">
+    <value>NowPlayingMonitor-WPF is an open-source tool designed for monitoring and recording information about the music currently being played.</value>
+  </data>
+  <data name="Show_App" xml:space="preserve">
+    <value>Show Application</value>
+  </data>
+  <data name="Exit" xml:space="preserve">
+    <value>Exit</value>
+  </data>
+  <data name="Window_Monitor" xml:space="preserve">
+    <value>Window Monitor</value>
+  </data>
+  <data name="Welcome" xml:space="preserve">
+    <value>Welcome</value>
+  </data>
+  <data name="AlwaysMinimizeToTray" xml:space="preserve">
+    <value></value>
+  </data>
 </root>

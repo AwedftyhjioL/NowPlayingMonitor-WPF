@@ -61,6 +61,15 @@ namespace NowPlayingMonitor_WPF {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        public static string AlwaysMinimizeToTray {
+            get {
+                return ResourceManager.GetString("AlwaysMinimizeToTray", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Need restart application to change language, Continue?.
         /// </summary>
         public static string ApplicationRestartWarning {
@@ -75,6 +84,15 @@ namespace NowPlayingMonitor_WPF {
         public static string Cancel {
             get {
                 return ResourceManager.GetString("Cancel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Exit.
+        /// </summary>
+        public static string Exit {
+            get {
+                return ResourceManager.GetString("Exit", resourceCulture);
             }
         }
         
@@ -97,11 +115,56 @@ namespace NowPlayingMonitor_WPF {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Show Application.
+        /// </summary>
+        public static string Show_App {
+            get {
+                return ResourceManager.GetString("Show_App", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Silent Start.
+        /// </summary>
+        public static string Silent_Start {
+            get {
+                return ResourceManager.GetString("Silent_Start", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to NowPlayingMonitor-WPF is an open-source tool designed for monitoring and recording information about the music currently being played..
+        /// </summary>
+        public static string Start_Page_Words {
+            get {
+                return ResourceManager.GetString("Start_Page_Words", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Test.
         /// </summary>
         public static string Test {
             get {
                 return ResourceManager.GetString("Test", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Welcome.
+        /// </summary>
+        public static string Welcome {
+            get {
+                return ResourceManager.GetString("Welcome", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Window Monitor.
+        /// </summary>
+        public static string Window_Monitor {
+            get {
+                return ResourceManager.GetString("Window_Monitor", resourceCulture);
             }
         }
         

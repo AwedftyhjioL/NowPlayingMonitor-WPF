@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="General" xml:space="preserve">
-    <value>常规</value>
+    <value>基本设置</value>
   </data>
   <data name="Window_Title" xml:space="preserve">
     <value>窗口标题</value>
@@ -134,5 +134,26 @@
   </data>
   <data name="ApplicationRestartWarning" xml:space="preserve">
     <value>更改语言需要重启应用，确认继续吗？</value>
+  </data>
+  <data name="Silent_Start" xml:space="preserve">
+    <value>最小化启动</value>
+  </data>
+  <data name="Start_Page_Words" xml:space="preserve">
+    <value>    NowPlayingMonitor-WPF是一个用于监控并记录当前播放音乐信息的开源工具。</value>
+  </data>
+  <data name="Show_App" xml:space="preserve">
+    <value>显示主界面</value>
+  </data>
+  <data name="Exit" xml:space="preserve">
+    <value>退出</value>
+  </data>
+  <data name="Window_Monitor" xml:space="preserve">
+    <value>窗口监控</value>
+  </data>
+  <data name="Welcome" xml:space="preserve">
+    <value>欢迎</value>
+  </data>
+  <data name="AlwaysMinimizeToTray" xml:space="preserve">
+    <value>关闭后最小化到系统托盘</value>
   </data>
 </root>

@@ -11,7 +11,7 @@ namespace NowPlayingMonitor_WPF
     public partial class MainWindow : Window
     {
 
-        public void ApplyCultureInfo()
+        public void LoadCultureInfo()
         {
             string infoName = Properties.Settings.Default.CultureInfoName;
             System.Threading.Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo(infoName);
