@@ -32,6 +32,7 @@
                         <ColumnDefinition Width="160*"/>
                         <ColumnDefinition Width="13*"/>
                     </Grid.ColumnDefinitions>
+                    
                     <Button x:Name="LanguageButton" HorizontalAlignment="Center" VerticalAlignment="Top" 
                             Margin="0,10,0,0"  Grid.Column="1" Height="36" Width="36" 
                             VerticalContentAlignment="Center" 
@@ -49,7 +50,15 @@
                                 </Border>
                             </ControlTemplate>
                         </Button.Template>
+                        <Button.ContextMenu>
+                            <ContextMenu>
+                                <MenuItem Header="简体中文" Click="LanguageMenuItem_Click" Tag="zh-Hans"/>
+                                <MenuItem Header="English" Click="LanguageMenuItem_Click" Tag="en"/>
+                                
+                            </ContextMenu>
+                        </Button.ContextMenu>
                     </Button>
+                    
                 </Grid>
 
             </TabItem>

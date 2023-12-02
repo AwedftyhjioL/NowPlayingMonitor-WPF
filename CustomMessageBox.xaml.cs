@@ -45,10 +45,12 @@ namespace NowPlayingMonitor_WPF
             Close();
         }
 
-        public static bool Show(string info)
+        public static bool Show(string info, Window owner)
         {
             string localizedInfo = Strings.ResourceManager.GetString(info) ?? info;
             var messageBox = new CustomMessageBox(localizedInfo);
+            messageBox.Owner = owner;
+            messageBox.WindowStartupLocation = WindowStartupLocation.CenterOwner;
             messageBox.ShowDialog();
             return messageBox.Result;
         }

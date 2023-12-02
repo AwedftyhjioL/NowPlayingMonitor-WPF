@@ -20,26 +20,27 @@ namespace NowPlayingMonitor_WPF
 
         public MainWindow()
         {
-
-            System.Threading.Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("en");
-            System.Threading.Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("zh-Hans");
+            ApplyCultureInfo();
 
             InitializeComponent();
+            ReloadLastApplicationSize();
+            ApplySilenceStart();
 
+            ApplyExtraEvent();
         }
 
-        
 
-        private void LanguageButton_Click(object sender, RoutedEventArgs e)
+        protected override void OnClosed(EventArgs e)
         {
-            if(CustomMessageBox.Show("ApplicationRestartWarning"))
-            {
-                RestartApplication();
-            }
+            SaveApplicationSize();
+            base.OnClosed(e);
+        }
 
+        protected void ApplyExtraEvent()
+        {
 
         }
 
-        
+
     }
 }
