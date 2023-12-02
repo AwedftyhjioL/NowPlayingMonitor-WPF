@@ -1,0 +1,12 @@
+# build file
+bin/
+obj/
+
+
+.vs/
+*.user
+*.suo
+*.userosscache
+
+# NuGet
+packages/
