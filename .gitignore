@@ -1,9 +1,9 @@
 # build file
-bin/
-obj/
+src/bin/
+src/obj/
 
 
-.vs/
+src/.vs/
 *.user
 *.suo
 *.userosscache
