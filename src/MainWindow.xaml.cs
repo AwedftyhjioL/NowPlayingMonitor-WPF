@@ -22,30 +22,12 @@ namespace NowPlayingMonitor_WPF
 
         public MainWindow()
         {
-            LoadCultureInfo();
-
-            InitializeComponent();
-
-            LoadWindowSettings();
-            LoadAppSettings();
-
-            ApplyExtraEvent();
-
+            _viewModel = new MainWindowViewModel(this);
+            StartUp();
         }
 
+        private MainWindowViewModel _viewModel;
 
-        protected override void OnClosed(EventArgs e)
-        {
-            SaveWindowSettings();
-            SaveAppSettings();
-            base.OnClosed(e);
-        }
 
-        protected void ApplyExtraEvent()
-        {
-            MyNotifyIcon.TrayMouseDoubleClick += MyNotifyIcon_TrayMouseDoubleClick;
-        }
-
-        
     }
 }

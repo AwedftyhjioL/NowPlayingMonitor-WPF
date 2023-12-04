@@ -5,15 +5,138 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:NowPlayingMonitor_WPF"
         xmlns:tb="http://www.hardcodet.net/taskbar"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         mc:Ignorable="d"
         Title="NowPlayingMonitor-WPF" 
         Icon="pack://application:,,,/NowPlayingMonitor-WPF;component/Resources/image/Tray.ico"
-        Height="450" Width="800" ResizeMode="CanResizeWithGrip" MinWidth="800" MinHeight="450">
+        Height="350" Width="900" ResizeMode="CanResizeWithGrip" MinWidth="900" MinHeight="500">
 
+    <Window.Resources>
+
+        <Style x:Key="RoundCornerRepeatButton" TargetType="RepeatButton">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="RepeatButton">
+                        <Border CornerRadius="3" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" 
+                                BorderThickness="{TemplateBinding BorderThickness}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style TargetType="xctk:IntegerUpDown">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="xctk:IntegerUpDown">
+                        <Border CornerRadius="5" 
+                                BorderBrush="{TemplateBinding BorderBrush}" 
+                                BorderThickness="{TemplateBinding BorderThickness}">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+
+                                <TextBox x:Name="PART_TextBox" 
+                                 Grid.Column="0" 
+                                 BorderThickness="0"
+                                 Foreground="{TemplateBinding Foreground}" 
+                                 Background="Transparent"
+                                 TextAlignment="Right"
+                                 VerticalAlignment="Center"
+                                 FontWeight="Regular"
+                                 Padding="0, 0, 10, 0" 
+                                 LostFocus="TextBox_LostFocus" GotFocus="TextBox_GotFocus"/>
+
+                                <Grid Grid.Column="1">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*" />
+                                        <RowDefinition Height="*" />
+                                    </Grid.RowDefinitions>
+
+                                    <Border Grid.Row="0" CornerRadius="0,0,0,0" >
+                                        <RepeatButton x:Name="PART_IncreaseButton" 
+                                                      Click="IncreaseButton_Click"
+                                                      Background="#4c4c4c"
+                                                      Foreground="#fefefe"
+                                                      MinHeight="16" MinWidth="30" 
+                                                      MaxHeight="16" MaxWidth="30" 
+                                                      FontSize="9"
+                                                      Style="{StaticResource RoundCornerRepeatButton}"
+                                                      Content="▲" />    
+                                    </Border>
+
+                                    <Border Grid.Row="1" CornerRadius="0,0,0,0" >
+                                        <RepeatButton x:Name="PART_DecreaseButton" 
+                                                      Click="DecreaseButton_Click"
+                                                      Background="#4c4c4c"
+                                                      Foreground="#fefefe"
+                                                      MinHeight="16" MinWidth="30" 
+                                                      MaxHeight="16" MaxWidth="30" 
+                                                      FontSize="9" 
+                                                      Style="{StaticResource RoundCornerRepeatButton}"
+                                                      Content="▼" />
+                                    </Border>
+                                </Grid>
+                            </Grid>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        
+
+        <Style x:Key="ScaleButtonAnimation" TargetType="Button">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Name="border"
+                  Background="LightGray"
+                  BorderBrush="DarkGray"
+                  BorderThickness="1"
+                                RenderTransformOrigin="0.5,0.5">
+                            <ContentPresenter HorizontalAlignment="Center"
+                               VerticalAlignment="Center"
+                               RenderTransformOrigin="0.5,0.5">
+                                <ContentPresenter.RenderTransform>
+                                    <ScaleTransform ScaleX="1" ScaleY="1"/>
+                                </ContentPresenter.RenderTransform>
+                            </ContentPresenter>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="border" Property="Background" Value="Gray"/>
+                                <Setter TargetName="border" Property="RenderTransform">
+                                    <Setter.Value>
+                                        <ScaleTransform ScaleX="1.1" ScaleY="1.1"/>
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter TargetName="border" Property="Background" Value="DarkGray"/>
+                                <Setter TargetName="border" Property="RenderTransform">
+                                    <Setter.Value>
+                                        <ScaleTransform ScaleX="0.9" ScaleY="0.9"/>
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+    </Window.Resources>
+    
+    
     <Grid Background="#FF3A393A">
 
 
-        <TabControl TabStripPlacement="Left" Background="#FF3A393A" Grid.ColumnSpan="2" Grid.RowSpan="3" Panel.ZIndex="-1" >
+        <TabControl x:Name="TabControlMain" TabStripPlacement="Left" Background="#FF3A393A" Grid.ColumnSpan="2" Grid.RowSpan="3" Panel.ZIndex="-1"
+                    SelectionChanged="TabControlMain_SelectionChanged">
 
             <TabControl.Resources>
                 <Style TargetType="TabItem">
@@ -36,18 +159,17 @@
             <TabItem Header="{x:Static local:Strings.Welcome}" 
                      Margin="-1,14,-1,-14" FontSize="16" MinHeight="40" MinWidth="100">
                 <Grid Margin="10,10,60,10">
+                    <Border BorderBrush="#FFFFFDFD" BorderThickness="2,2,2,2" CornerRadius="4,4,4,4">
+                        <Grid>
+                            <Label Content="NowPlayingMonitor-WPF" HorizontalAlignment="Center" Margin="0,22,0,0" 
+                                    VerticalAlignment="Top" Foreground="White" FontWeight="Bold" FontSize="20"/>
 
-                    <Label Content="NowPlayingMonitor-WPF" HorizontalAlignment="Center" Margin="0,22,0,0" 
-                           VerticalAlignment="Top" Foreground="White" FontWeight="Bold" FontSize="20"/>
-
-                    <TextBlock TextWrapping="Wrap" Text="{x:Static local:Strings.Start_Page_Words}"
-                                   Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Top" 
-                                   MaxWidth="500" Margin="0,76,0,0">
-                    </TextBlock>
-
-
-
-                    <Border BorderBrush="#FFFFFDFD" BorderThickness="2,2,2,2" CornerRadius="4,4,4,4"/>
+                            <TextBlock TextWrapping="Wrap" Text="{x:Static local:Strings.Start_Page_Words}"
+                                        Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Top" 
+                                        MaxWidth="500" Margin="0,76,0,0">
+                            </TextBlock>
+                        </Grid>
+                    </Border>
                 </Grid>
 
             </TabItem>
@@ -57,31 +179,217 @@
                      Margin="-1,14,-1,-14" FontSize="16" MinHeight="40" MinWidth="100">
                 <Grid Margin="10,10,60,10">
 
-                    <Border BorderBrush="#FFFFFDFD" BorderThickness="2,2,2,2" CornerRadius="4,4,4,4"/>
+                    <Border BorderBrush="#FFFFFDFD" BorderThickness="2,2,2,2" CornerRadius="4,4,4,4">
+                        <Grid  Margin="30,25,30,25">
+                            <CheckBox x:Name="CheckBoxSilentStart" Content="{x:Static local:Strings.Silent_Start}" 
+                                        HorizontalAlignment="Left"  VerticalAlignment="Top" 
+                                        Checked="CheckBoxSilentStart_Checked" Unchecked="CheckBoxSilentStart_Unchecked" 
+                                        Foreground="White" FontSize="16"/>
 
-                    <CheckBox x:Name="CheckBoxSilentStart" Content="{x:Static local:Strings.Silent_Start}" 
-                              HorizontalAlignment="Left" Margin="73,53,0,0" VerticalAlignment="Top" 
-                              Checked="CheckBoxSilentStart_Checked" Unchecked="CheckBoxSilentStart_Unchecked" 
-                              Foreground="White" FontSize="16"/>
-
-                    <CheckBox x:Name="CheckBoxAlwaysMinimizeToTray" Content="{x:Static local:Strings.AlwaysMinimizeToTray}" 
-                              HorizontalAlignment="Left" Margin="73,94,0,0" VerticalAlignment="Top" 
-                              Checked="CheckBoxAlwaysMinimizeToTray_Checked" Unchecked="CheckBoxAlwaysMinimizeToTray_Unchecked" 
-                              Foreground="White" FontSize="16"/>        
+                            <CheckBox x:Name="CheckBoxAlwaysMinimizeToTray" Content="{x:Static local:Strings.Always_Minimize_To_Tray}" 
+                                      HorizontalAlignment="Left"  VerticalAlignment="Top" 
+                                      Checked="CheckBoxAlwaysMinimizeToTray_Checked" Unchecked="CheckBoxAlwaysMinimizeToTray_Unchecked" 
+                                      Foreground="White" FontSize="16" Margin="0,30,0,0"/>
+                        </Grid>
+                    </Border>
 
                 </Grid>
-
             </TabItem>
 
 
-
-            <TabItem Header="{x:Static local:Strings.Window_Monitor}" 
+            <TabItem Header="{x:Static local:Strings.Monitor_Setting}" 
                     Margin="-1,14,-1,-14" Width="NaN" FontSize="16" MinHeight="40" MinWidth="100">
                 <Grid Margin="10,10,60,10">
 
 
+                    <Border BorderBrush="#FFFFFDFD" BorderThickness="2,2,2,2" CornerRadius="4,4,4,4">
 
-                    <Border BorderBrush="#FFFFFDFD" BorderThickness="2,2,2,2" CornerRadius="4,4,4,4"/>
+                        <Grid Margin="20,25,20,25">
+
+                            <StackPanel Margin="0,0,0,-4">
+                                
+                                <StackPanel Orientation="Horizontal">
+                                    <Label Content="{x:Static local:Strings.Work_Directory}" Foreground="White" 
+                                            MinHeight="28" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+
+                                    <Separator Width="5" Background="{x:Null}"/>
+                                    
+                                    <Border Background="#1f1e1f" CornerRadius="4" Width="450" MinHeight="36" >
+                                        <TextBox x:Name="TextBoxWorkDirectory" Text="" Foreground="White" TextWrapping="NoWrap" 
+                                                    VerticalAlignment="Center" HorizontalAlignment="Left"
+                                                   TextAlignment="Left" Padding="10,0,0,0" Background="{x:Null}" 
+                                                 BorderThickness="0,0,0,0" AllowDrop="True" 
+                                                 TextChanged="TextBoxWorkDirectory_TextChanged"/>
+                                    </Border>
+
+                                    <Separator Width="10" Background="{x:Null}"/>
+
+                                    <Button x:Name="ButtonSelectWorkDirectory" HorizontalAlignment="Right" VerticalAlignment="Top" 
+                                            Margin="0,0,0,0"  Grid.Column="1" 
+                                            VerticalContentAlignment="Center" 
+                                            MinWidth="54" MinHeight="36" MaxWidth="54" MaxHeight="36" 
+                                            BorderThickness="0,0,0,0" 
+                                            Click="ButtonSelectWorkDirectory_Click">
+                                        <Button.Content>
+                                            <Image Stretch="Uniform" 
+                                                   Source="pack://application:,,,/NowPlayingMonitor-WPF;component/Resources/image/Folder1_128px.png" 
+                                                   VerticalAlignment="Center" HorizontalAlignment="Center" />
+                                        </Button.Content>
+                                        <Button.Template>
+                                            <ControlTemplate TargetType="{x:Type Button}">
+                                                <Border BorderThickness="0" BorderBrush="White" CornerRadius="4" 
+                                                        Background="{TemplateBinding Background}">
+                                                    <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                                </Border>
+                                            </ControlTemplate>
+                                        </Button.Template>
+
+                                    </Button>
+
+                                </StackPanel>
+
+                                <Separator Height="10" Background="{x:Null}"/>
+
+
+                                <StackPanel Orientation="Horizontal">
+                                    <Label Content="{x:Static local:Strings.Refresh_Frequency}" Foreground="White" 
+                                            MinHeight="28" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                                    <Separator Width="5" Background="{x:Null}"/>
+                                    <xctk:IntegerUpDown Name="NumericUpDownControlRefreshFrequency" Background="#1f1e1f" 
+                                                        Foreground="#FFCCCCCC" BorderBrush="#FF1F2023" 
+                                                        Margin="0,0,0,0"  HorizontalAlignment="Right" VerticalAlignment="Top"
+                                                        MinWidth="160" MaxWidth="160" MinHeight="40"  MaxHeight="40" 
+                                                        BorderThickness="1,1,1,1" Increment="100" 
+                                                        Value="500"
+                                                        ValueChanged="NumericUpDownControlRefreshFrequency_ValueChanged"
+                                                        />
+                                    <Label Content="{x:Static local:Strings.Milisecond}" Foreground="White" 
+                                            MinHeight="28" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                                </StackPanel>
+
+                                <Separator Height="10" Background="{x:Null}"/>
+                                
+                                <StackPanel Orientation="Horizontal">
+                                    <RadioButton Content="{x:Static local:Strings.Use_Process_Name}" Foreground="White" 
+                                                 MinHeight="28" HorizontalAlignment="Left" VerticalAlignment="Center" 
+                                                 VerticalContentAlignment="Center" IsChecked="True"/>
+                                </StackPanel>
+
+                                <Separator Height="10" Background="{x:Null}"/>
+                                
+                                <StackPanel Orientation="Horizontal">
+                                    <Label Content="{x:Static local:Strings.Process_Name}"  Foreground="White" 
+                                            MinHeight="28" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+
+                                    <Separator Width="5" Background="{x:Null}"/>
+
+                                    <ComboBox x:Name="ComboBoxProcessName"
+                                              MinWidth="460" MaxWidth="460" IsReadOnly="True" MinHeight="36" MaxDropDownHeight="253" 
+                                              SelectionChanged="ComboBoxProcessName_SelectionChanged">
+                                        <ComboBox.Style>
+                                            <Style TargetType="ComboBox">
+                                                <Setter Property="Foreground" Value="White"/>
+                                                <Setter Property="Background" Value="#1f1e1f"/>
+                                                <Setter Property="BorderBrush" Value="#1f1e1f"/>
+                                                <Setter Property="BorderThickness" Value="1"/>
+                                                <Setter Property="FontSize" Value="16"/>
+
+                                                <Setter Property="Template">
+                                                    <Setter.Value>
+                                                        <ControlTemplate TargetType="ComboBox">
+                                                            <Grid MinWidth="460" MaxWidth="460">
+
+                                                                <ToggleButton Name="ToggleButton" Focusable="false" Background="#1f1e1f" BorderBrush="#1f1e1f"
+                                     ClickMode="Press" IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}" >
+                                                                    <Grid HorizontalAlignment="Right">
+                                                                        <Grid.ColumnDefinitions>
+                                                                            <ColumnDefinition  MinWidth="430"/>
+                                                                            <ColumnDefinition  Width="Auto"/>
+                                                                        </Grid.ColumnDefinitions>
+                                                                        <Border Grid.Column="0" Name="Border" MinHeight="28" MinWidth="480" CornerRadius="4" Background="{TemplateBinding Background}" 
+BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}"/>
+                                                                        <Path Grid.Column="1" Data="M 0 0 L 4 4 L 8 0 Z" Fill="White" Margin="3" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                                                                    </Grid>
+                                                                </ToggleButton>
+
+
+                                                                <ContentPresenter HorizontalAlignment="Left" VerticalAlignment="Center" Margin="3,3,23,3" MinWidth="460" MaxWidth="460"
+                                               Content="{TemplateBinding SelectionBoxItem}"
+                                               ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}"
+                                               ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}"/>
+                                                                <Popup Name="Popup" Placement="Bottom" IsOpen="{Binding IsDropDownOpen, RelativeSource={RelativeSource TemplatedParent}}" 
+                                   AllowsTransparency="True" Focusable="False" PopupAnimation="Slide" MinWidth="460" MaxWidth="460">
+                                                                    <Grid Name="DropDown" SnapsToDevicePixels="True" MinWidth="{TemplateBinding ActualWidth}" MaxHeight="{TemplateBinding MaxDropDownHeight}"
+                                      MaxWidth="460">
+                                                                        <Border x:Name="DropDownBorder" Background="#1f1e1f" CornerRadius="4" BorderThickness="1" BorderBrush="White" MinWidth="460" MaxWidth="460"/>
+                                                                        <ScrollViewer Margin="4,6" SnapsToDevicePixels="True">
+                                                                            <ItemsPresenter KeyboardNavigation.DirectionalNavigation="Contained"/>
+                                                                        </ScrollViewer>
+                                                                    </Grid>
+                                                                </Popup>
+                                                            </Grid>
+                                                        </ControlTemplate>
+                                                    </Setter.Value>
+                                                </Setter>
+
+
+                                            </Style>
+                                        </ComboBox.Style>
+
+                                    </ComboBox>
+
+                                    <Separator Width="10" Background="{x:Null}"/>
+                                    
+                                    <Button x:Name="ButtonRefreshProcessName" Foreground="White" Background="{x:Null}"
+                                            MinWidth="24" MinHeight="24" MaxWidth="24" MaxHeight="24" 
+                                            Click="ButtonRefreshProcessName_Click" Style="{StaticResource ScaleButtonAnimation}">
+                                        <Button.Content>
+                                            <Image Stretch="Fill" 
+                                                   Source="pack://application:,,,/NowPlayingMonitor-WPF;component/Resources/image/Refresh1_128px.png" 
+                                                   VerticalAlignment="Center" HorizontalAlignment="Center" />   
+                                        </Button.Content>
+                                        <Button.Template>
+                                            <ControlTemplate TargetType="{x:Type Button}">
+                                                <Border BorderThickness="0" BorderBrush="White" CornerRadius="4" 
+                                                        Background="{TemplateBinding Background}">
+                                                    <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                                </Border>
+                                            </ControlTemplate>
+                                        </Button.Template>
+
+                                    </Button>
+                                    
+                                </StackPanel>
+
+                                <Separator Height="10" Background="{x:Null}"/>
+
+                                <StackPanel Orientation="Horizontal" Visibility="Hidden">
+                                    <RadioButton Content="{x:Static local:Strings.Use_Window_Title}"  Foreground="White" 
+                                                 MinHeight="28" HorizontalAlignment="Left" VerticalAlignment="Center" 
+                                                 VerticalContentAlignment="Center"/>
+
+                                </StackPanel>
+
+
+                            </StackPanel>
+                            
+                            
+                            
+                            
+
+
+
+                            
+                            
+                            
+                            
+                        </Grid>
+                    </Border>
+
+                    
+
+
+
                 </Grid>
 
             </TabItem>
@@ -89,14 +397,15 @@
         </TabControl>
 
         <Button x:Name="LanguageButton" HorizontalAlignment="Right" VerticalAlignment="Top" 
-                Margin="10,15,15,0"  Grid.Column="1" Height="36" Width="36" 
+                Margin="50,15,15,20"  Grid.Column="1" Height="36" Width="36" 
                 VerticalContentAlignment="Center" 
                 MinWidth="36" MinHeight="36" MaxWidth="36" MaxHeight="36" 
-                BorderThickness="0,0,0,0" Click="LanguageButton_Click"> 
+                BorderThickness="0,0,0,0" Click="LanguageButton_Click"
+                Style="{StaticResource ScaleButtonAnimation}">
             <Button.Content>
                 <Image Stretch="Fill" 
                        Source="pack://application:,,,/NowPlayingMonitor-WPF;component/Resources/image/Language_36x36.png" 
-                       VerticalAlignment="Center" HorizontalAlignment="Center" />   
+                       VerticalAlignment="Center" HorizontalAlignment="Center" />
             </Button.Content>
             <Button.Template>
                 <ControlTemplate TargetType="{x:Type Button}">
@@ -114,11 +423,65 @@
             </Button.ContextMenu>
         </Button>
 
+        <Button x:Name="ButtonApply" HorizontalAlignment="Right" VerticalAlignment="Top" 
+                Margin="0,65,15,90" MinWidth="36" MinHeight="36" MaxWidth="36" MaxHeight="36" 
+                Click="ButtonApply_Click">
+
+            <Button.Style>
+                <Style TargetType="Button">
+                    <Setter Property="Content">
+                        <Setter.Value>
+                            <Image Stretch="Fill" 
+                           Source="pack://application:,,,/NowPlayingMonitor-WPF;component/Resources/image/Save_disabled_128px.png" 
+                           VerticalAlignment="Center" HorizontalAlignment="Center" />
+                        </Setter.Value>
+                    </Setter>
+                    <Style.Triggers>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="Content">
+                                <Setter.Value>
+                                    <Image Stretch="Fill" 
+                                   Source="pack://application:,,,/NowPlayingMonitor-WPF;component/Resources/image/Save_disabled_128px.png" 
+                                   VerticalAlignment="Center" HorizontalAlignment="Center" />
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="True">
+                            <Setter Property="Content">
+                                <Setter.Value>
+                                    <Image Stretch="Fill" 
+                                    Source="pack://application:,,,/NowPlayingMonitor-WPF;component/Resources/image/Save_128px.png" 
+                                    VerticalAlignment="Center" HorizontalAlignment="Center" />       
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+            
+            
+            
+            <Button.Template>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border BorderThickness="0" BorderBrush="White" CornerRadius="4" 
+                        Background="{TemplateBinding Background}">
+                        <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                    </Border>
+                </ControlTemplate>
+            </Button.Template>
+            <Button.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="简体中文" Click="LanguageMenuItem_Click" Tag="zh-Hans"/>
+                    <MenuItem Header="English" Click="LanguageMenuItem_Click" Tag="en"/>
+                </ContextMenu>
+            </Button.ContextMenu>
+        </Button>
 
         <tb:TaskbarIcon x:Name="MyNotifyIcon"
                         IconSource="pack://application:,,,/NowPlayingMonitor-WPF;component/Resources/image/Tray.ico"
                         ToolTipText="NowPlayingMonitor-WPF"
-                        MenuActivation="RightClick" Panel.ZIndex="1" MaxWidth="0" MaxHeight="0" HorizontalAlignment="Left" VerticalAlignment="Top">
+                        MenuActivation="RightClick" Panel.ZIndex="1" MaxWidth="0" MaxHeight="0" HorizontalAlignment="Left" 
+                        VerticalAlignment="Top">
             <tb:TaskbarIcon.ContextMenu>
                 <ContextMenu>
                     <MenuItem Header="{x:Static local:Strings.Show_App}" Click="TrayMenuItem_Open_Click"/>

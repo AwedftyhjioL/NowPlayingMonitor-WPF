@@ -132,7 +132,7 @@
   <data name="Test" xml:space="preserve">
     <value>测试</value>
   </data>
-  <data name="ApplicationRestartWarning" xml:space="preserve">
+  <data name="Application_Restart_Warning" xml:space="preserve">
     <value>更改语言需要重启应用，确认继续吗？</value>
   </data>
   <data name="Silent_Start" xml:space="preserve">
@@ -153,7 +153,34 @@
   <data name="Welcome" xml:space="preserve">
     <value>欢迎</value>
   </data>
-  <data name="AlwaysMinimizeToTray" xml:space="preserve">
+  <data name="Always_Minimize_To_Tray" xml:space="preserve">
     <value>关闭后最小化到系统托盘</value>
+  </data>
+  <data name="Monitor_Setting" xml:space="preserve">
+    <value>监控设置</value>
+  </data>
+  <data name="Monitor_Mode" xml:space="preserve">
+    <value>监控模式</value>
+  </data>
+  <data name="Refresh_Frequency" xml:space="preserve">
+    <value>刷新频率</value>
+  </data>
+  <data name="Use_Process_Name" xml:space="preserve">
+    <value>使用进程名</value>
+  </data>
+  <data name="Use_Window_Title" xml:space="preserve">
+    <value>使用窗口标题</value>
+  </data>
+  <data name="Process_Name" xml:space="preserve">
+    <value>进程名</value>
+  </data>
+  <data name="Refresh" xml:space="preserve">
+    <value>刷新</value>
+  </data>
+  <data name="Work_Directory" xml:space="preserve">
+    <value>工作目录</value>
+  </data>
+  <data name="Milisecond" xml:space="preserve">
+    <value>毫秒</value>
   </data>
 </root>

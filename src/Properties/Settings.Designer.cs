@@ -118,5 +118,89 @@ namespace NowPlayingMonitor_WPF.Properties {
                 this["IsMinimizeToTrayWhenClosed"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string WorkDirectory {
+            get {
+                return ((string)(this["WorkDirectory"]));
+            }
+            set {
+                this["WorkDirectory"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("500")]
+        public int RefreshFrequency {
+            get {
+                return ((int)(this["RefreshFrequency"]));
+            }
+            set {
+                this["RefreshFrequency"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string WindowMonitorProcessName {
+            get {
+                return ((string)(this["WindowMonitorProcessName"]));
+            }
+            set {
+                this["WindowMonitorProcessName"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int WindowMonitorProcessId {
+            get {
+                return ((int)(this["WindowMonitorProcessId"]));
+            }
+            set {
+                this["WindowMonitorProcessId"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string WindowMonitorProgramPath {
+            get {
+                return ((string)(this["WindowMonitorProgramPath"]));
+            }
+            set {
+                this["WindowMonitorProgramPath"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string ErrorLogFilePath {
+            get {
+                return ((string)(this["ErrorLogFilePath"]));
+            }
+            set {
+                this["ErrorLogFilePath"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool IsProcessingRestartApplication {
+            get {
+                return ((bool)(this["IsProcessingRestartApplication"]));
+            }
+            set {
+                this["IsProcessingRestartApplication"] = value;
+            }
+        }
     }
 }

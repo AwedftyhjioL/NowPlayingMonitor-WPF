@@ -8,7 +8,7 @@ using System.Xml.Linq;
 
 namespace NowPlayingMonitor_WPF
 {
-    public class LocalizationManager
+    public class LocalizationManagerUtil
     {
 
         public static bool ChangeLanguage(string cultureName)

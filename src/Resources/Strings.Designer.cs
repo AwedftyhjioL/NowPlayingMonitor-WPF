@@ -63,18 +63,18 @@ namespace NowPlayingMonitor_WPF {
         /// <summary>
         ///   Looks up a localized string similar to .
         /// </summary>
-        public static string AlwaysMinimizeToTray {
+        public static string Always_Minimize_To_Tray {
             get {
-                return ResourceManager.GetString("AlwaysMinimizeToTray", resourceCulture);
+                return ResourceManager.GetString("Always_Minimize_To_Tray", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Need restart application to change language, Continue?.
         /// </summary>
-        public static string ApplicationRestartWarning {
+        public static string Application_Restart_Warning {
             get {
-                return ResourceManager.GetString("ApplicationRestartWarning", resourceCulture);
+                return ResourceManager.GetString("Application_Restart_Warning", resourceCulture);
             }
         }
         
@@ -106,11 +106,65 @@ namespace NowPlayingMonitor_WPF {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        public static string Milisecond {
+            get {
+                return ResourceManager.GetString("Milisecond", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        public static string Monitor_Mode {
+            get {
+                return ResourceManager.GetString("Monitor_Mode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        public static string Monitor_Setting {
+            get {
+                return ResourceManager.GetString("Monitor_Setting", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to OK.
         /// </summary>
         public static string Ok {
             get {
                 return ResourceManager.GetString("Ok", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        public static string Process_Name {
+            get {
+                return ResourceManager.GetString("Process_Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        public static string Refresh {
+            get {
+                return ResourceManager.GetString("Refresh", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        public static string Refresh_Frequency {
+            get {
+                return ResourceManager.GetString("Refresh_Frequency", resourceCulture);
             }
         }
         
@@ -151,6 +205,24 @@ namespace NowPlayingMonitor_WPF {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        public static string Use_Process_Name {
+            get {
+                return ResourceManager.GetString("Use_Process_Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        public static string Use_Window_Title {
+            get {
+                return ResourceManager.GetString("Use_Window_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Welcome.
         /// </summary>
         public static string Welcome {
@@ -174,6 +246,15 @@ namespace NowPlayingMonitor_WPF {
         public static string Window_Title {
             get {
                 return ResourceManager.GetString("Window_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        public static string Work_Directory {
+            get {
+                return ResourceManager.GetString("Work_Directory", resourceCulture);
             }
         }
     }

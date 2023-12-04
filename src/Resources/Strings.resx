@@ -132,7 +132,7 @@
   <data name="Test" xml:space="preserve">
     <value>Test</value>
   </data>
-  <data name="ApplicationRestartWarning" xml:space="preserve">
+  <data name="Application_Restart_Warning" xml:space="preserve">
     <value>Need restart application to change language, Continue?</value>
   </data>
   <data name="Silent_Start" xml:space="preserve">
@@ -153,7 +153,34 @@
   <data name="Welcome" xml:space="preserve">
     <value>Welcome</value>
   </data>
-  <data name="AlwaysMinimizeToTray" xml:space="preserve">
+  <data name="Always_Minimize_To_Tray" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Monitor_Setting" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Monitor_Mode" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Refresh_Frequency" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Use_Process_Name" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Use_Window_Title" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Process_Name" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Refresh" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Work_Directory" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Milisecond" xml:space="preserve">
     <value></value>
   </data>
 </root>

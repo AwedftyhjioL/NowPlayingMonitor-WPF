@@ -11,19 +11,36 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Resources\image\Folder1_128px.png" />
+    <None Remove="Resources\image\Folder2_128px.png" />
     <None Remove="Resources\image\Language_36x36.png" />
+    <None Remove="Resources\image\Refresh1_128px.png" />
+    <None Remove="Resources\image\Refresh2_128px.png" />
+    <None Remove="Resources\image\Save_128px.png" />
+    <None Remove="Resources\image\Save_36px.png" />
+    <None Remove="Resources\image\Save_disabled_128px.png" />
+    <None Remove="Resources\image\Save_disabled_36x36px.png" />
     <None Remove="Resources\image\Tray.ico" />
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Extended.Wpf.Toolkit" Version="4.5.1" />
     <PackageReference Include="Hardcodet.NotifyIcon.Wpf" Version="1.1.0" />
     <PackageReference Include="WPFLocalizeExtension" Version="3.10.0" />
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Resources\image\Folder1_128px.png" />
+    <Resource Include="Resources\image\Folder2_128px.png" />
     <Resource Include="Resources\image\Language_36x36.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="Resources\image\Refresh1_128px.png" />
+    <Resource Include="Resources\image\Refresh2_128px.png" />
+    <Resource Include="Resources\image\Save_128px.png" />
+    <Resource Include="Resources\image\Save_36px.png" />
+    <Resource Include="Resources\image\Save_disabled_128px.png" />
+    <Resource Include="Resources\image\Save_disabled_36x36px.png" />
     <Resource Include="Resources\image\Tray.ico">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
