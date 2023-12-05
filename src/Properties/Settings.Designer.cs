@@ -193,13 +193,61 @@ namespace NowPlayingMonitor_WPF.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool IsProcessingRestartApplication {
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int LastActivedTabIndex {
             get {
-                return ((bool)(this["IsProcessingRestartApplication"]));
+                return ((int)(this["LastActivedTabIndex"]));
             }
             set {
-                this["IsProcessingRestartApplication"] = value;
+                this["LastActivedTabIndex"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool IsApplyLastUIState {
+            get {
+                return ((bool)(this["IsApplyLastUIState"]));
+            }
+            set {
+                this["IsApplyLastUIState"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool IsSkipSilentStartOnce {
+            get {
+                return ((bool)(this["IsSkipSilentStartOnce"]));
+            }
+            set {
+                this["IsSkipSilentStartOnce"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool IsMakeTopMostOnce {
+            get {
+                return ((bool)(this["IsMakeTopMostOnce"]));
+            }
+            set {
+                this["IsMakeTopMostOnce"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("-1")]
+        public int PerferedTabIndexOnStartUp {
+            get {
+                return ((int)(this["PerferedTabIndexOnStartUp"]));
+            }
+            set {
+                this["PerferedTabIndexOnStartUp"] = value;
             }
         }
     }

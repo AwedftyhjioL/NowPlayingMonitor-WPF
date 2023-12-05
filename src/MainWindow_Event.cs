@@ -119,6 +119,11 @@ namespace NowPlayingMonitor_WPF
             System.Windows.Application.Current.Shutdown();
         }
 
+        private void TrayMenuItem_Restart_Click(object sender, RoutedEventArgs e)
+        {
+            RestartApplication();
+        }
+
         private void CheckBoxSilentStart_Checked(object sender, RoutedEventArgs e)
         {
             Settings.Default.IsStartWithMinimize = true;

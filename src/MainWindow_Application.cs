@@ -22,127 +22,24 @@ namespace NowPlayingMonitor_WPF
 
             LoadDefaultSetting();
 
-            LoadWindowSettings();
-
-            LoadAppSettings();
+            RestoreLastUIState();
 
             ApplyExtraEvent();
 
             ApplyExtraUiSetUp();
 
-            HandleRestartWork();
 
             _viewModel.StartBackgroundTask();
         }
 
         protected override void OnClosed(EventArgs e)
         {
-            SaveWindowSettings();
-            SaveAppSettings();
+            SaveWindowState();
+            SaveAppState();
             base.OnClosed(e);
         }
 
-        void LoadDefaultSetting()
-        {
-            if(String.IsNullOrEmpty(Properties.Settings.Default.WorkDirectory))
-            {
-                Settings.Default.WorkDirectory = PathUtil.GetPortalWorkDirectory();
-            }
-
-            if (String.IsNullOrEmpty(Settings.Default.ErrorLogFilePath))
-            {
-                Settings.Default.ErrorLogFilePath = Path.Combine(
-                    PathUtil.GetCurrentDirectory() ?? "", "ErrorLog.txt");
-            }
-                
-        }
-
-        protected void ApplyExtraEvent()
-        {
-            MyNotifyIcon.TrayMouseDoubleClick += MyNotifyIcon_TrayMouseDoubleClick;
-
-        }
-
-        protected void ApplyExtraUiSetUp()
-        {
-            _viewModel.UpdateProcessInfos();
-
-
-        }
-
-        public void SaveWindowSettings()
-        {
-            Properties.Settings.Default.WindowLeft = this.Left;
-            Properties.Settings.Default.WindowTop = this.Top;
-            Properties.Settings.Default.WindowWidth = this.Width;
-            Properties.Settings.Default.WindowHeight = this.Height;
-            Properties.Settings.Default.WindowState = (int)this.WindowState;
-            Properties.Settings.Default.Save();
-        }
-        public void LoadWindowSettings()
-        {
-            this.Left = Properties.Settings.Default.WindowLeft;
-            this.Top = Properties.Settings.Default.WindowTop;
-            this.Width = Properties.Settings.Default.WindowWidth;
-            this.Height = Properties.Settings.Default.WindowHeight;
-            this.WindowState = (WindowState)Properties.Settings.Default.WindowState;
-
-            if (Settings.Default.IsStartWithMinimize && !Settings.Default.IsProcessingRestartApplication)
-            {
-                this.WindowState = WindowState.Minimized;
-                this.Hide();
-            }
-
-            
-
-        }
-
-        public void SaveAppSettings()
-        {
-            Settings.Default.IsStartWithMinimize = CheckBoxSilentStart.IsChecked ?? false;
-            Settings.Default.IsMinimizeToTrayWhenClosed = CheckBoxAlwaysMinimizeToTray.IsChecked ?? false;
-            Settings.Default.WorkDirectory = TextBoxWorkDirectory.Text;
-            Settings.Default.RefreshFrequency = NumericUpDownControlRefreshFrequency.Value ?? 500;
-            Settings.Default.Save();
-        }
-
-        public void LoadAppSettings()
-        {
-            CheckBoxSilentStart.IsChecked = Settings.Default.IsStartWithMinimize;
-            CheckBoxAlwaysMinimizeToTray.IsChecked = Settings.Default.IsMinimizeToTrayWhenClosed;
-            TextBoxWorkDirectory.Text = Settings.Default.WorkDirectory;
-            NumericUpDownControlRefreshFrequency.Value = Settings.Default.RefreshFrequency;
-        }
-
-        protected void HandleRestartWork()
-        {
-            if (Settings.Default.IsProcessingRestartApplication)
-            {
-                this.Topmost = true;
-                this.Topmost = false;
-                this.Show();
-                Settings.Default.IsProcessingRestartApplication = false;
-            }
-        }
-
-        public void RestartApplication()
-        {
-            SaveWindowSettings();
-            SaveAppSettings();
-            RestartApplicationProcess();
-        }
-
-        private void RestartApplicationProcess()
-        {
-            string appPath = Process.GetCurrentProcess().MainModule?.FileName ?? "";
-
-            if (!String.IsNullOrEmpty(appPath))
-            {
-                Settings.Default.IsProcessingRestartApplication = true;
-                Process.Start(appPath);
-                Application.Current.Shutdown();
-            }
-        }
+        
 
         protected override void OnStateChanged(EventArgs e)
         {
@@ -152,14 +49,114 @@ namespace NowPlayingMonitor_WPF
 
         protected override void OnClosing(CancelEventArgs e)
         {
-            if(Settings.Default.IsMinimizeToTrayWhenClosed)
+            if (Settings.Default.IsMinimizeToTrayWhenClosed)
             {
                 e.Cancel = true;
                 this.Hide();
             }
-            
+
 
             base.OnClosing(e);
+        }
+
+        public void RestoreLastUIState()
+        {
+            RestoreWindowState();
+            RestoreAppState();
+        }
+
+        protected void ApplyExtraEvent()
+        {
+            MyNotifyIcon.TrayMouseDoubleClick += MyNotifyIcon_TrayMouseDoubleClick;
+        }
+
+        protected void ApplyExtraUiSetUp()
+        {
+            ApplySilentStartSettings(); 
+            ApplyTopMostOnce();
+            ApplayPerferedTabOnStartUp();
+
+            _viewModel.UpdateProcessInfos();
+
+        }
+
+        public void SaveWindowState()
+        {
+            Properties.Settings.Default.WindowLeft = this.Left;
+            Properties.Settings.Default.WindowTop = this.Top;
+            Properties.Settings.Default.WindowWidth = this.Width;
+            Properties.Settings.Default.WindowHeight = this.Height;
+            Properties.Settings.Default.WindowState = (int)this.WindowState;
+            Properties.Settings.Default.Save();
+        }
+        public void RestoreWindowState()
+        {
+            this.Left = Properties.Settings.Default.WindowLeft;
+            this.Top = Properties.Settings.Default.WindowTop;
+            this.Width = Properties.Settings.Default.WindowWidth;
+            this.Height = Properties.Settings.Default.WindowHeight;
+            this.WindowState = (WindowState)Properties.Settings.Default.WindowState;
+            if(this.WindowState == WindowState.Minimized)
+                this.WindowState = WindowState.Normal;
+        }
+
+        public void ApplySilentStartSettings()
+        {
+            if (Settings.Default.IsSkipSilentStartOnce)
+            {
+                Settings.Default.IsSkipSilentStartOnce = false;
+                return;
+            }
+
+            if (Settings.Default.IsStartWithMinimize)
+            {
+                this.WindowState = WindowState.Minimized;
+                this.Hide();
+            }
+        }
+
+        public void ApplyTopMostOnce()
+        {
+            if (Settings.Default.IsMakeTopMostOnce)
+            {
+                this.Topmost = true;
+                this.Show();
+                this.Topmost = false;
+                Settings.Default.IsMakeTopMostOnce = false;
+            }
+        }
+
+        public void ApplayPerferedTabOnStartUp()
+        {
+            if (Settings.Default.PerferedTabIndexOnStartUp >= 0)
+                TabControlMain.SelectedIndex = Settings.Default.PerferedTabIndexOnStartUp;
+
+        }
+
+        public void SaveAppState()
+        {
+            Settings.Default.IsStartWithMinimize = CheckBoxSilentStart.IsChecked ?? false;
+            Settings.Default.IsMinimizeToTrayWhenClosed = CheckBoxAlwaysMinimizeToTray.IsChecked ?? false;
+            Settings.Default.WorkDirectory = TextBoxWorkDirectory.Text;
+            Settings.Default.RefreshFrequency = NumericUpDownControlRefreshFrequency.Value ?? 500;
+            Settings.Default.LastActivedTabIndex = TabControlMain.SelectedIndex;
+            Settings.Default.Save();
+        }
+
+        public void RestoreAppState()
+        {
+            CheckBoxSilentStart.IsChecked = Settings.Default.IsStartWithMinimize;
+            CheckBoxAlwaysMinimizeToTray.IsChecked = Settings.Default.IsMinimizeToTrayWhenClosed;
+            TextBoxWorkDirectory.Text = Settings.Default.WorkDirectory;
+            NumericUpDownControlRefreshFrequency.Value = Settings.Default.RefreshFrequency;
+            TabControlMain.SelectedIndex = Settings.Default.LastActivedTabIndex;
+        }
+
+        public void RestartApplication()
+        {
+            SaveWindowState();
+            SaveAppState();
+            RestartApplicationProcess();
         }
 
         public void LoadCultureInfo()
@@ -192,5 +189,39 @@ namespace NowPlayingMonitor_WPF
 
             ComboBoxProcessName.ItemsSource = sortedProcessInfoItems;
         }
+
+
+        private void LoadDefaultSetting()
+        {
+            if (String.IsNullOrEmpty(Properties.Settings.Default.WorkDirectory))
+            {
+                Settings.Default.WorkDirectory = PathUtil.GetPortalWorkDirectory();
+            }
+
+            if (String.IsNullOrEmpty(Settings.Default.ErrorLogFilePath))
+            {
+                Settings.Default.ErrorLogFilePath = Path.Combine(
+                    PathUtil.GetCurrentDirectory() ?? "", "ErrorLog.txt");
+            }
+
+        }
+
+        private void RestartApplicationProcess()
+        {
+            string appPath = Process.GetCurrentProcess().MainModule?.FileName ?? "";
+
+            if (!String.IsNullOrEmpty(appPath))
+            {
+                Settings.Default.IsSkipSilentStartOnce = true;
+                Settings.Default.IsMakeTopMostOnce = true;
+                Process.Start(appPath);
+                Application.Current.Shutdown();
+            }
+        }
+
+        
+
+        
+
     }
 }

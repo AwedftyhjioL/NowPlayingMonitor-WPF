@@ -183,4 +183,7 @@
   <data name="Milisecond" xml:space="preserve">
     <value></value>
   </data>
+  <data name="Restart_App" xml:space="preserve">
+    <value></value>
+  </data>
 </root>

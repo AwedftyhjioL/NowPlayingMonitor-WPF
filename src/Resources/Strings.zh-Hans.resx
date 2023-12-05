@@ -183,4 +183,7 @@
   <data name="Milisecond" xml:space="preserve">
     <value>毫秒</value>
   </data>
+  <data name="Restart_App" xml:space="preserve">
+    <value>重启程序</value>
+  </data>
 </root>

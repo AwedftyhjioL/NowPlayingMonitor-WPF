@@ -169,6 +169,15 @@ namespace NowPlayingMonitor_WPF {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        public static string Restart_App {
+            get {
+                return ResourceManager.GetString("Restart_App", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Show Application.
         /// </summary>
         public static string Show_App {

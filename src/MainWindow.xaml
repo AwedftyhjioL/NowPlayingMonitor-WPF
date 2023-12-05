@@ -485,6 +485,7 @@ BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding Bo
             <tb:TaskbarIcon.ContextMenu>
                 <ContextMenu>
                     <MenuItem Header="{x:Static local:Strings.Show_App}" Click="TrayMenuItem_Open_Click"/>
+                    <MenuItem Header="{x:Static local:Strings.Restart_App}" Click="TrayMenuItem_Restart_Click"/>
                     <MenuItem Header="{x:Static local:Strings.Exit}" Click="TrayMenuItem_Exit_Click"/>
                 </ContextMenu>
             </tb:TaskbarIcon.ContextMenu>
