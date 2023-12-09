@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 
-namespace NowPlayingMonitor_WPF
+namespace NowPlayingMonitor
 {
     public class LocalizationManagerUtil
     {

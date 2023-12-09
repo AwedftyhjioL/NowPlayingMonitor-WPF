@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NowPlayingMonitor_WPF
+namespace NowPlayingMonitor
 {
     public class MainWindowModel
     {

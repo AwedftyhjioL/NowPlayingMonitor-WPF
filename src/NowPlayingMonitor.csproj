@@ -3,7 +3,7 @@
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
     <TargetFramework>net8.0-windows</TargetFramework>
-    <RootNamespace>NowPlayingMonitor_WPF</RootNamespace>
+    <RootNamespace>NowPlayingMonitor</RootNamespace>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <UseWPF>true</UseWPF>
@@ -77,17 +77,17 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>image.Designer.cs</LastGenOutput>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <CustomToolNamespace>NowPlayingMonitor_WPF</CustomToolNamespace>
+      <CustomToolNamespace>NowPlayingMonitor</CustomToolNamespace>
     </EmbeddedResource>
     <EmbeddedResource Update="Resources\Strings.en.resx">
-      <CustomToolNamespace>NowPlayingMonitor_WPF</CustomToolNamespace>
+      <CustomToolNamespace>NowPlayingMonitor</CustomToolNamespace>
     </EmbeddedResource>
     <EmbeddedResource Update="Resources\Strings.zh-Hans.resx">
-      <CustomToolNamespace>NowPlayingMonitor_WPF</CustomToolNamespace>
+      <CustomToolNamespace>NowPlayingMonitor</CustomToolNamespace>
       <Generator></Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Resources\Strings.resx">
-      <CustomToolNamespace>NowPlayingMonitor_WPF</CustomToolNamespace>
+      <CustomToolNamespace>NowPlayingMonitor</CustomToolNamespace>
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Strings.Designer.cs</LastGenOutput>
     </EmbeddedResource>

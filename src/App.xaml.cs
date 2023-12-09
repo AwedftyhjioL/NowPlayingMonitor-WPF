@@ -2,7 +2,7 @@
 using System.Data;
 using System.Windows;
 
-namespace NowPlayingMonitor_WPF
+namespace NowPlayingMonitor
 {
     /// <summary>
     /// Interaction logic for App.xaml

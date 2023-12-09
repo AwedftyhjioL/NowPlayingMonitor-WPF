@@ -1,5 +1,9 @@
-﻿using System.Diagnostics;
+﻿using NowPlayingMonitor.Properties;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -9,24 +13,19 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using System.Drawing;
-using Hardcodet.Wpf.TaskbarNotification;
 
 namespace NowPlayingMonitor
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for GeneralTab.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class GeneralTab : UserControl
     {
-
-        public MainWindow()
+        public GeneralTab()
         {
-            _viewModel = new MainWindowViewModel(this);
-            StartUp();
+            InitializeComponent();
+            this.DataContext = new GeneralTabViewModel();
         }
-
-        private MainWindowViewModel _viewModel;
 
 
     }

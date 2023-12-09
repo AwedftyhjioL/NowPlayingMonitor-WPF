@@ -1,5 +1,5 @@
-﻿using NowPlayingMonitor_WPF.Properties;
-using NowPlayingMonitor_WPF.Util;
+﻿using NowPlayingMonitor.Properties;
+using NowPlayingMonitor.Util;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +9,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 
-namespace NowPlayingMonitor_WPF
+namespace NowPlayingMonitor
 {
     public partial class MainWindow : Window
     {
@@ -69,25 +69,25 @@ namespace NowPlayingMonitor_WPF
             _viewModel.ApplyAppSetting();
         }
 
-        private void ButtonRefreshProcessName_Click(object sender, RoutedEventArgs e)
-        {
-            _viewModel.UpdateProcessInfos();
+        //private void ButtonRefreshProcessName_Click(object sender, RoutedEventArgs e)
+        //{
+        //    _viewModel.UpdateProcessInfos();
 
-        }
+        //}
 
         private void ComboBoxProcessName_SelectionChanged(object sender, RoutedEventArgs e)
         {
             _viewModel.UpdateMonitorProcessInfo((sender as ComboBox)?.SelectedIndex ?? -1);
         }
 
-        private void ButtonSelectWorkDirectory_Click(object sender, RoutedEventArgs e)
-        {
-            string dir = DialogUtil.GetDirectory();
-            if(!String.IsNullOrEmpty(dir))
-            {
-                TextBoxWorkDirectory.Text = dir;
-            }
-        }
+        //private void ButtonSelectWorkDirectory_Click(object sender, RoutedEventArgs e)
+        //{
+        //    string dir = DialogUtil.GetDirectory();
+        //    if(!String.IsNullOrEmpty(dir))
+        //    {
+        //        TextBoxWorkDirectory.Text = dir;
+        //    }
+        //}
 
 
         private void TabControlMain_SelectionChanged(object sender, RoutedEventArgs e)
@@ -124,25 +124,13 @@ namespace NowPlayingMonitor_WPF
             RestartApplication();
         }
 
-        private void CheckBoxSilentStart_Checked(object sender, RoutedEventArgs e)
-        {
-            Settings.Default.IsStartWithMinimize = true;
-        }
+        
 
-        private void CheckBoxSilentStart_Unchecked(object sender, RoutedEventArgs e)
-        {
-            Settings.Default.IsStartWithMinimize = false;
-        }
+        
 
-        private void CheckBoxAlwaysMinimizeToTray_Checked(object sender, RoutedEventArgs e)
-        {
-            Settings.Default.IsMinimizeToTrayWhenClosed = true;
-        }
+        
 
-        private void CheckBoxAlwaysMinimizeToTray_Unchecked(object sender, RoutedEventArgs e)
-        {
-            Settings.Default.IsMinimizeToTrayWhenClosed = false;
-        }
+        
 
         private void LanguageButton_Click(object sender, RoutedEventArgs e)
         {
@@ -166,24 +154,24 @@ namespace NowPlayingMonitor_WPF
         }
 
 
-        private void TextBoxWorkDirectory_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            _viewModel.UpdateWorkDirectory();
-        }
+        //private void TextBoxWorkDirectory_TextChanged(object sender, TextChangedEventArgs e)
+        //{
+        //    _viewModel.UpdateWorkDirectory();
+        //}
 
-        private void NumericUpDownControlRefreshFrequency_ValueChanged(object sender, RoutedEventArgs e)
-        {
-            if (NumericUpDownControlRefreshFrequency.Value < 250) 
-            {
-                NumericUpDownControlRefreshFrequency.Value = 250;
-            }
-            if (NumericUpDownControlRefreshFrequency.Value > 233333333)
-            {
-                NumericUpDownControlRefreshFrequency.Value = 233333333;
-            }
+        //private void NumericUpDownControlRefreshFrequency_ValueChanged(object sender, RoutedEventArgs e)
+        //{
+        //    if (NumericUpDownControlRefreshFrequency.Value < 250) 
+        //    {
+        //        NumericUpDownControlRefreshFrequency.Value = 250;
+        //    }
+        //    if (NumericUpDownControlRefreshFrequency.Value > 233333333)
+        //    {
+        //        NumericUpDownControlRefreshFrequency.Value = 233333333;
+        //    }
 
-            _viewModel.UpdateRefreshFrequency();
-        }
+        //    _viewModel.UpdateRefreshFrequency();
+        //}
 
     }
 }

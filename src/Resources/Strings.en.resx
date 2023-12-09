@@ -139,7 +139,7 @@
     <value>Silent Start</value>
   </data>
   <data name="Start_Page_Words" xml:space="preserve">
-    <value>NowPlayingMonitor-WPF is an open-source tool designed for monitoring and recording information about the music currently being played.</value>
+    <value>NowPlayingMonitor is an open-source tool designed for monitoring and recording information about the music currently being played.</value>
   </data>
   <data name="Show_App" xml:space="preserve">
     <value>Show Application</value>

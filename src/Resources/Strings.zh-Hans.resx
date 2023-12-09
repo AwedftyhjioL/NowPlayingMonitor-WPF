@@ -139,7 +139,7 @@
     <value>最小化启动</value>
   </data>
   <data name="Start_Page_Words" xml:space="preserve">
-    <value>    NowPlayingMonitor-WPF是一个用于监控并记录当前播放音乐信息的开源工具。</value>
+    <value>    NowPlayingMonitor是一个用于监控并记录当前播放音乐信息的开源工具。</value>
   </data>
   <data name="Show_App" xml:space="preserve">
     <value>显示主界面</value>

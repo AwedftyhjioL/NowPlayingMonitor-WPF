@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace NowPlayingMonitor_WPF {
+namespace NowPlayingMonitor {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace NowPlayingMonitor_WPF {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("NowPlayingMonitor_WPF.Resources.image.Image", typeof(Image).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("NowPlayingMonitor.Resources.image.Image", typeof(Image).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;

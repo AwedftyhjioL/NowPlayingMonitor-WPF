@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.DirectoryServices;
 
-namespace NowPlayingMonitor_WPF.Util
+namespace NowPlayingMonitor.Util
 {
     public class PathUtil
     {

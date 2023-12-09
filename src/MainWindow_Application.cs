@@ -1,5 +1,5 @@
-﻿using NowPlayingMonitor_WPF.Properties;
-using NowPlayingMonitor_WPF.Util;
+﻿using NowPlayingMonitor.Properties;
+using NowPlayingMonitor.Util;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -10,7 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace NowPlayingMonitor_WPF
+namespace NowPlayingMonitor
 {
     public partial class MainWindow : Window
     {
@@ -29,7 +29,7 @@ namespace NowPlayingMonitor_WPF
             ApplyExtraUiSetUp();
 
 
-            _viewModel.StartBackgroundTask();
+            //_viewModel.StartBackgroundTask();
         }
 
         protected override void OnClosed(EventArgs e)
@@ -72,11 +72,11 @@ namespace NowPlayingMonitor_WPF
 
         protected void ApplyExtraUiSetUp()
         {
-            ApplySilentStartSettings(); 
+            ApplySilentStartSettings();
             ApplyTopMostOnce();
             ApplayPerferedTabOnStartUp();
 
-            _viewModel.UpdateProcessInfos();
+            //_viewModel.UpdateProcessInfos();
 
         }
 
@@ -135,20 +135,20 @@ namespace NowPlayingMonitor_WPF
 
         public void SaveAppState()
         {
-            Settings.Default.IsStartWithMinimize = CheckBoxSilentStart.IsChecked ?? false;
-            Settings.Default.IsMinimizeToTrayWhenClosed = CheckBoxAlwaysMinimizeToTray.IsChecked ?? false;
-            Settings.Default.WorkDirectory = TextBoxWorkDirectory.Text;
-            Settings.Default.RefreshFrequency = NumericUpDownControlRefreshFrequency.Value ?? 500;
+            //Settings.Default.IsStartWithMinimize = CheckBoxSilentStart.IsChecked ?? false;
+            //Settings.Default.IsMinimizeToTrayWhenClosed = CheckBoxAlwaysMinimizeToTray.IsChecked ?? false;
+            //Settings.Default.WorkDirectory = TextBoxWorkDirectory.Text;
+            //Settings.Default.RefreshFrequency = NumericUpDownControlRefreshFrequency.Value ?? 500;
             Settings.Default.LastActivedTabIndex = TabControlMain.SelectedIndex;
             Settings.Default.Save();
         }
 
         public void RestoreAppState()
         {
-            CheckBoxSilentStart.IsChecked = Settings.Default.IsStartWithMinimize;
-            CheckBoxAlwaysMinimizeToTray.IsChecked = Settings.Default.IsMinimizeToTrayWhenClosed;
-            TextBoxWorkDirectory.Text = Settings.Default.WorkDirectory;
-            NumericUpDownControlRefreshFrequency.Value = Settings.Default.RefreshFrequency;
+            //CheckBoxSilentStart.IsChecked = Settings.Default.IsStartWithMinimize;
+            //CheckBoxAlwaysMinimizeToTray.IsChecked = Settings.Default.IsMinimizeToTrayWhenClosed;
+            //TextBoxWorkDirectory.Text = Settings.Default.WorkDirectory;
+            //NumericUpDownControlRefreshFrequency.Value = Settings.Default.RefreshFrequency;
             TabControlMain.SelectedIndex = Settings.Default.LastActivedTabIndex;
         }
 
@@ -179,16 +179,16 @@ namespace NowPlayingMonitor_WPF
         }
 
 
-        public void UpdateProcessInfos(List<ProcessInfo>? processInfos)
-        {
-            if (processInfos == null) return;
+        //public void UpdateProcessInfos(List<ProcessInfo>? processInfos)
+        //{
+        //    if (processInfos == null) return;
 
-            var sortedProcessInfoItems = processInfos
-                .Select(p => $"{p.ProcessName}    ({p.ProgramPath})")
-                .ToList();
+        //    var sortedProcessInfoItems = processInfos
+        //        .Select(p => $"{p.ProcessName}    ({p.ProgramPath})")
+        //        .ToList();
 
-            ComboBoxProcessName.ItemsSource = sortedProcessInfoItems;
-        }
+        //    ComboBoxProcessName.ItemsSource = sortedProcessInfoItems;
+        //}
 
 
         private void LoadDefaultSetting()

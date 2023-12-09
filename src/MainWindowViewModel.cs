@@ -1,5 +1,5 @@
-﻿using NowPlayingMonitor_WPF.Properties;
-using NowPlayingMonitor_WPF.Util;
+﻿using NowPlayingMonitor.Properties;
+using NowPlayingMonitor.Util;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +10,7 @@ using System.Threading;
 using System.Diagnostics;
 using System.Reflection.Metadata;
 
-namespace NowPlayingMonitor_WPF
+namespace NowPlayingMonitor
 {
     public class MainWindowViewModel
     {
@@ -24,25 +24,25 @@ namespace NowPlayingMonitor_WPF
 
         
 
-        public void UpdateProcessInfos()
-        {
-            _model.ProcessInfos = ProcessUtil.GetProcessInfoList(true, true);
-            _view.UpdateProcessInfos(_model.ProcessInfos);
+        //public void UpdateProcessInfos()
+        //{
+        //    _model.ProcessInfos = ProcessUtil.GetProcessInfoList(true, true);
+        //    _view.UpdateProcessInfos(_model.ProcessInfos);
 
-            int index = 0;
-            string lastProgramPath = Settings.Default.WindowMonitorProgramPath;
-            foreach(var p in  _model.ProcessInfos)
-            {
-                if(lastProgramPath.Equals(p.ProgramPath))
-                {
-                    _view.ComboBoxProcessName.SelectedIndex = index;
-                }
-                else
-                {
-                    index++;
-                }
-            }
-        }
+        //    int index = 0;
+        //    string lastProgramPath = Settings.Default.WindowMonitorProgramPath;
+        //    foreach(var p in  _model.ProcessInfos)
+        //    {
+        //        if(lastProgramPath.Equals(p.ProgramPath))
+        //        {
+        //            _view.ComboBoxProcessName.SelectedIndex = index;
+        //        }
+        //        else
+        //        {
+        //            index++;
+        //        }
+        //    }
+        //}
 
         public void UpdateMonitorProcessInfo(int index)
         {
@@ -56,15 +56,15 @@ namespace NowPlayingMonitor_WPF
             }
         }
 
-        public void UpdateWorkDirectory()
-        {
-            Settings.Default.WorkDirectory = _view.TextBoxWorkDirectory.Text;
-        }
+        //public void UpdateWorkDirectory()
+        //{
+        //    Settings.Default.WorkDirectory = _view.TextBoxWorkDirectory.Text;
+        //}
 
-        public void UpdateRefreshFrequency()
-        {
-            Settings.Default.RefreshFrequency = Convert.ToInt32(_view.NumericUpDownControlRefreshFrequency.Text);
-        }
+        //public void UpdateRefreshFrequency()
+        //{
+        //    Settings.Default.RefreshFrequency = Convert.ToInt32(_view.NumericUpDownControlRefreshFrequency.Text);
+        //}
 
         public void ApplyAppSetting()
         {

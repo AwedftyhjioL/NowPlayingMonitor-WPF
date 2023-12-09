@@ -9,7 +9,7 @@ using System.Windows.Forms;
 using System.Windows.Media;
 using Xceed.Wpf.Toolkit;
 
-namespace NowPlayingMonitor_WPF
+namespace NowPlayingMonitor
 {
     public partial class MainWindow : Window
     {

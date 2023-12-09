@@ -1,4 +1,4 @@
-﻿using NowPlayingMonitor_WPF.Util;
+﻿using NowPlayingMonitor.Util;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -7,7 +7,7 @@ using System.Reflection.Metadata;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NowPlayingMonitor_WPF
+namespace NowPlayingMonitor
 {
     public class FileWriterUtil
     {

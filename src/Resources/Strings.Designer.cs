@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace NowPlayingMonitor_WPF {
+namespace NowPlayingMonitor {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace NowPlayingMonitor_WPF {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("NowPlayingMonitor_WPF.Resources.Strings", typeof(Strings).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("NowPlayingMonitor.Resources.Strings", typeof(Strings).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -196,7 +196,7 @@ namespace NowPlayingMonitor_WPF {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to NowPlayingMonitor-WPF is an open-source tool designed for monitoring and recording information about the music currently being played..
+        ///   Looks up a localized string similar to NowPlayingMonitor is an open-source tool designed for monitoring and recording information about the music currently being played..
         /// </summary>
         public static string Start_Page_Words {
             get {
