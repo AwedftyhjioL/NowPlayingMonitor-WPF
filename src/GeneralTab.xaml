@@ -3,24 +3,17 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
              xmlns:local="clr-namespace:NowPlayingMonitor"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid Margin="10,10,60,10">
 
-        <Border BorderBrush="#FFFFFDFD" BorderThickness="2,2,2,2" CornerRadius="4,4,4,4">
-            <Grid  Margin="30,25,30,25">
-                <CheckBox x:Name="CheckBoxSilentStart" Content="{x:Static local:Strings.Silent_Start}" 
-                        HorizontalAlignment="Left"  VerticalAlignment="Top" 
-                        IsChecked="{Binding IsStartWithMinimize, Mode=TwoWay}"
-                        Foreground="White" FontSize="16"/>
 
-                <CheckBox x:Name="CheckBoxAlwaysMinimizeToTray" Content="{x:Static local:Strings.Always_Minimize_To_Tray}" 
-                      HorizontalAlignment="Left"  VerticalAlignment="Top" 
-                      IsChecked="{Binding IsMinimizeToTrayWhenClosed, Mode=TwoWay}"
-                      Foreground="White" FontSize="16" Margin="0,30,0,0"/>
-            </Grid>
-        </Border>
-
+    <Grid>
+        
+        <Grid  Margin="30,25,30,25">
+        <CheckBox x:Name="CheckBoxSilentStart" Content="{x:Static local:Strings.Silent_Start}" HorizontalAlignment="Left"  VerticalAlignment="Top" IsChecked="{Binding IsStartWithMinimize, Mode=TwoWay}" Foreground="White" FontSize="16"/>
+        <CheckBox x:Name="CheckBoxAlwaysMinimizeToTray" Content="{x:Static local:Strings.Always_Minimize_To_Tray}" HorizontalAlignment="Left"  VerticalAlignment="Top" IsChecked="{Binding IsMinimizeToTrayWhenClosed, Mode=TwoWay}" Foreground="White" FontSize="16" Margin="0,30,0,0"/>
+        </Grid>
     </Grid>
 </UserControl>

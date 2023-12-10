@@ -24,9 +24,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.2" />
     <PackageReference Include="Extended.Wpf.Toolkit" Version="4.5.1" />
     <PackageReference Include="Hardcodet.NotifyIcon.Wpf" Version="1.1.0" />
     <PackageReference Include="MahApps.Metro" Version="2.4.10" />
+    <PackageReference Include="MahApps.Metro.IconPacks" Version="4.11.0" />
     <PackageReference Include="SpotifyAPI.Web" Version="7.0.2" />
     <PackageReference Include="SpotifyAPI.Web.Auth" Version="7.0.2" />
     <PackageReference Include="WPFLocalizeExtension" Version="3.10.0" />

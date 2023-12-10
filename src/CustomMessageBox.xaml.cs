@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MahApps.Metro.Controls;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,7 +18,7 @@ namespace NowPlayingMonitor
     /// <summary>
     /// Interaction logic for CustomMessageBox.xaml
     /// </summary>
-    public partial class CustomMessageBox : Window
+    public partial class CustomMessageBox : MetroWindow
     {
         public CustomMessageBox()
         {
