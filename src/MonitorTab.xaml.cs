@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace NowPlayingMonitor
 {
     /// <summary>
-    /// Interaction logic for MetroTab.xaml
+    /// Interaction logic for MonitorTab.xaml
     /// </summary>
-    public partial class MetroTab : UserControl
+    public partial class MonitorTab : UserControl
     {
-        public MetroTab()
+        public MonitorTab()
         {
             InitializeComponent();
         }

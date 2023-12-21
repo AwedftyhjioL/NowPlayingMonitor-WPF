@@ -11,24 +11,16 @@
         mc:Ignorable="d"
         Title="NowPlayingMonitor" 
         Icon="pack://application:,,,/NowPlayingMonitor;component/Resources/image/Tray.ico"
-        Height="350" Width="900" ResizeMode="CanResizeWithGrip" MinWidth="900" MinHeight="500">
+        ResizeMode="CanResizeWithGrip" MinWidth="900" MinHeight="500"
+        Width="900" Height="500"
+        Loaded="Window_Loaded">
 
     <Window.Resources>
-        <Style x:Key="CircleButtonNoBorder" TargetType="Button" BasedOn="{StaticResource MahApps.Styles.Button.Circle}">
-            <Setter Property="BorderThickness" Value="0"/>
-            <Setter Property="Background" Value="Transparent"/>
-            <Setter Property="BorderBrush" Value="Transparent"/>
-        </Style>
 
-        <Style x:Key="SquareButtonNoBorder" TargetType="Button" BasedOn="{StaticResource MahApps.Styles.Button.Square}">
-            <Setter Property="BorderThickness" Value="0"/>
-            <Setter Property="Background" Value="Transparent"/>
-            <Setter Property="BorderBrush" Value="Transparent"/>
-            <Setter Property="mah:ControlsHelper.CornerRadius" Value="5" />
-        </Style>
+        
 
         <DataTemplate x:Key="HamburgerMenuIconItemTemplate" DataType="{x:Type local:MenuItemViewModel}">
-            <StackPanel Orientation="Horizontal">
+            <StackPanel Orientation="Horizontal" >
                 <VisualStateManager.VisualStateGroups>
                     <VisualStateGroup x:Name="HamburgerMenuStates">
                         <VisualState x:Name="Open">
@@ -42,8 +34,8 @@
                         </VisualState>
                     </VisualStateGroup>
                 </VisualStateManager.VisualStateGroups>
-                <iconPacks:PackIconUnicons Kind="{Binding IconKind}" Margin="10,0,0,0" Width="28" Height="46" VerticalAlignment="Center"/>
-                <TextBlock x:Name="HamburgerMenuItemTextBlock" Text="{Binding Label}" Margin="10,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Left">
+                <iconPacks:PackIconUnicons Kind="{Binding IconKind}" Margin="10,0,0,0" Width="28" Height="46" VerticalAlignment="Center" />
+                <TextBlock x:Name="HamburgerMenuItemTextBlock" Text="{Binding Label}" Margin="10,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Left" >
                     
                 </TextBlock>
             </StackPanel>
@@ -54,48 +46,25 @@
     </Window.Resources>
 
 
-    <Grid>
 
-        <mah:HamburgerMenu ItemsSource="{Binding MenuItems}"
-                   ItemTemplate="{StaticResource HamburgerMenuIconItemTemplate}"
-                   OptionsItemTemplate="{DynamicResource HamburgerMenuIconItemTemplate}"
-                   Content="{Binding CurrentContent}"
-                   ItemClick="HamburgerMenu_OnItemClick" HamburgerHeight ="46" FontSize="16" MinimumOpenPaneLength="50" OpenPaneLength="200" >
+    <Grid>
+        <mah:HamburgerMenu  ItemsSource="{Binding MenuItems}" ItemTemplate="{StaticResource HamburgerMenuIconItemTemplate}" OptionsItemTemplate="{DynamicResource HamburgerMenuIconItemTemplate}" Content="{Binding CurrentContent}" ItemClick="HamburgerMenu_OnItemClick" HamburgerHeight ="46" FontSize="16" MinimumOpenPaneLength="40" OpenPaneLength="130" Background="{DynamicResource MahApps.Brushes.ThemeBackground}" Foreground="{DynamicResource MahApps.Brushes.ThemeForeground}" >
+
         </mah:HamburgerMenu>
 
-
         
-
-        <Button x:Name="ButtonLanguage" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,15,15,0" Style="{StaticResource SquareButtonNoBorder}">
-            <iconPacks:PackIconUnicons Kind="EnglishToChinese"  Width="32" Height="32" VerticalAlignment="Center" HorizontalAlignment="Center" />
-            <Button.ContextMenu>
-                <ContextMenu>
-                    <MenuItem Header="简体中文"  Tag="zh-Hans"/>
-                    <MenuItem Header="English"  Tag="en"/>
-                </ContextMenu>
-            </Button.ContextMenu>
-        </Button>
-        
-        <Button x:Name="ButtonThemeLightDark" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0, 65,15,50" Click="ButtonThemeLightDark_Click" Style="{StaticResource SquareButtonNoBorder}">
-            <iconPacks:PackIconUnicons Kind="Moon" Width="32" Height="32" VerticalAlignment="Center" HorizontalAlignment="Center" />
-        </Button>
-
-        <Button x:Name="ButtonApply" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,115,15,90" Style="{StaticResource SquareButtonNoBorder}">
-            <iconPacks:PackIconForkAwesome Kind="FloppyOutline" Width="32" Height="32" VerticalAlignment="Center" HorizontalAlignment="Center" />
-        </Button>
-
         <tb:TaskbarIcon x:Name="MyNotifyIcon" IconSource="pack://application:,,,/NowPlayingMonitor;component/Resources/image/Tray.ico" ToolTipText="NowPlayingMonitor" MenuActivation="RightClick" Panel.ZIndex="1" MaxWidth="0" MaxHeight="0" HorizontalAlignment="Left" VerticalAlignment="Top">
             <tb:TaskbarIcon.ContextMenu>
                 <ContextMenu>
-                    <MenuItem Header="{x:Static local:Strings.Show_App}" />
-                    <MenuItem Header="{x:Static local:Strings.Restart_App}" />
-                    <MenuItem Header="{x:Static local:Strings.Exit}" />
+                    <MenuItem Header="{x:Static local:Strings.Show_App}" Click="TrayMenuItem_Open_Click"/>
+                    <MenuItem Header="{x:Static local:Strings.Restart_App}" Command="{Binding RestartApplicationCommand}"/>
+                    <MenuItem Header="{x:Static local:Strings.Exit}" Command="{Binding ExitApplicationCommand}"/>
                 </ContextMenu>
             </tb:TaskbarIcon.ContextMenu>
         </tb:TaskbarIcon>
-
-
     </Grid>
 
+
+    
 
 </mah:MetroWindow>

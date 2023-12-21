@@ -1,5 +1,5 @@
 ﻿<?xml version='1.0' encoding='utf-8'?>
-<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="NowPlayingMonitor_WPF.Properties" GeneratedClassName="Settings">
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="NowPlayingMonitor.Properties" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
     <Setting Name="WindowLeft" Type="System.Double" Scope="User">
@@ -58,6 +58,12 @@
     </Setting>
     <Setting Name="PerferedTabIndexOnStartUp" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">-1</Value>
+    </Setting>
+    <Setting Name="ActivatedMenuItemIndex" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="CurrentTheme" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Dark.Cyan</Value>
     </Setting>
   </Settings>
 </SettingsFile>

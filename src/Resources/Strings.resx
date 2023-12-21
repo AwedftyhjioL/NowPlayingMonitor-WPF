@@ -154,36 +154,42 @@
     <value>Welcome</value>
   </data>
   <data name="Always_Minimize_To_Tray" xml:space="preserve">
-    <value></value>
+    <value>Minimize to tray after window closed</value>
   </data>
   <data name="Monitor_Setting" xml:space="preserve">
-    <value></value>
+    <value>Monitor</value>
   </data>
   <data name="Monitor_Mode" xml:space="preserve">
-    <value></value>
+    <value>Monitor Mode</value>
   </data>
   <data name="Refresh_Frequency" xml:space="preserve">
-    <value></value>
+    <value>Refresh Frequency</value>
   </data>
   <data name="Use_Process_Name" xml:space="preserve">
-    <value></value>
+    <value>Use Process Name</value>
   </data>
   <data name="Use_Window_Title" xml:space="preserve">
-    <value></value>
+    <value>Use Window Title</value>
   </data>
   <data name="Process_Name" xml:space="preserve">
-    <value></value>
+    <value>Process Name</value>
   </data>
   <data name="Refresh" xml:space="preserve">
-    <value></value>
+    <value>Refresh</value>
   </data>
   <data name="Work_Directory" xml:space="preserve">
-    <value></value>
+    <value>Work Directory</value>
   </data>
   <data name="Milisecond" xml:space="preserve">
-    <value></value>
+    <value>ms</value>
   </data>
   <data name="Restart_App" xml:space="preserve">
-    <value></value>
+    <value>Restart App</value>
+  </data>
+  <data name="Monitor" xml:space="preserve">
+    <value>Monitor</value>
+  </data>
+  <data name="Settings" xml:space="preserve">
+    <value>Settings</value>
   </data>
 </root>

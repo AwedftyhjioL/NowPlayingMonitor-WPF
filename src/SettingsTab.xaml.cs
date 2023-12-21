@@ -17,14 +17,14 @@ using System.Windows.Shapes;
 namespace NowPlayingMonitor
 {
     /// <summary>
-    /// Interaction logic for GeneralTab.xaml
+    /// Interaction logic for SettingsTab.xaml
     /// </summary>
-    public partial class GeneralTab : UserControl
+    public partial class SettingsTab : UserControl
     {
-        public GeneralTab()
+        public SettingsTab()
         {
             InitializeComponent();
-            this.DataContext = new GeneralTabViewModel();
+            this.DataContext = new SettingsTabViewModel();
         }
 
 

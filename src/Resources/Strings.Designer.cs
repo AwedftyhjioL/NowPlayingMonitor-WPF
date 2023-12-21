@@ -61,7 +61,7 @@ namespace NowPlayingMonitor {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to Minimize to tray after window closed.
         /// </summary>
         public static string Always_Minimize_To_Tray {
             get {
@@ -106,7 +106,7 @@ namespace NowPlayingMonitor {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to ms.
         /// </summary>
         public static string Milisecond {
             get {
@@ -115,7 +115,16 @@ namespace NowPlayingMonitor {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to Monitor.
+        /// </summary>
+        public static string Monitor {
+            get {
+                return ResourceManager.GetString("Monitor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Monitor Mode.
         /// </summary>
         public static string Monitor_Mode {
             get {
@@ -124,7 +133,7 @@ namespace NowPlayingMonitor {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to Monitor.
         /// </summary>
         public static string Monitor_Setting {
             get {
@@ -142,7 +151,7 @@ namespace NowPlayingMonitor {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to Process Name.
         /// </summary>
         public static string Process_Name {
             get {
@@ -151,7 +160,7 @@ namespace NowPlayingMonitor {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to Refresh.
         /// </summary>
         public static string Refresh {
             get {
@@ -160,7 +169,7 @@ namespace NowPlayingMonitor {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to Refresh Frequency.
         /// </summary>
         public static string Refresh_Frequency {
             get {
@@ -169,11 +178,20 @@ namespace NowPlayingMonitor {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to Restart App.
         /// </summary>
         public static string Restart_App {
             get {
                 return ResourceManager.GetString("Restart_App", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Settings.
+        /// </summary>
+        public static string Settings {
+            get {
+                return ResourceManager.GetString("Settings", resourceCulture);
             }
         }
         
@@ -214,7 +232,7 @@ namespace NowPlayingMonitor {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to Use Process Name.
         /// </summary>
         public static string Use_Process_Name {
             get {
@@ -223,7 +241,7 @@ namespace NowPlayingMonitor {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to Use Window Title.
         /// </summary>
         public static string Use_Window_Title {
             get {
@@ -259,7 +277,7 @@ namespace NowPlayingMonitor {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to Work Directory.
         /// </summary>
         public static string Work_Directory {
             get {

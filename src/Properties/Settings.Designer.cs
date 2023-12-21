@@ -250,5 +250,29 @@ namespace NowPlayingMonitor.Properties {
                 this["PerferedTabIndexOnStartUp"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int ActivatedMenuItemIndex {
+            get {
+                return ((int)(this["ActivatedMenuItemIndex"]));
+            }
+            set {
+                this["ActivatedMenuItemIndex"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Dark.Cyan")]
+        public string CurrentTheme {
+            get {
+                return ((string)(this["CurrentTheme"]));
+            }
+            set {
+                this["CurrentTheme"] = value;
+            }
+        }
     }
 }

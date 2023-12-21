@@ -33,6 +33,27 @@ namespace NowPlayingMonitor.Util
             return workSpacePath;
         }
 
+        public static string GetPortalLogDirectory()
+        {
+            string executablePath = Assembly.GetExecutingAssembly().Location;
+            string? directoryPath = Path.GetDirectoryName(executablePath);
+            if (directoryPath == null) return "";
+
+            string logDir = Path.Combine(directoryPath, "Log");
+            if (!Directory.Exists(logDir))
+            {
+                Directory.CreateDirectory(logDir);
+            }
+
+            return logDir;
+        }
+
+        public static string GetPortalLogFilePath()
+        {
+            return Path.Combine(PathUtil.GetPortalLogDirectory(),
+                    TimeUtil.NowString() + ".txt");
+        }
+
         public static void CreateDirectory(string path)
         {
             if (!Directory.Exists(path))

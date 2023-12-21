@@ -186,4 +186,10 @@
   <data name="Restart_App" xml:space="preserve">
     <value>Restart App</value>
   </data>
+  <data name="Monitor" xml:space="preserve">
+    <value>Monitor</value>
+  </data>
+  <data name="Settings" xml:space="preserve">
+    <value>Settings</value>
+  </data>
 </root>

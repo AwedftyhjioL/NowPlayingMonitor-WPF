@@ -11,6 +11,12 @@ namespace NowPlayingMonitor
     public class LocalizationManagerUtil
     {
 
+        public static void LoadCultureInfo()
+        {
+            string infoName = Properties.Settings.Default.CultureInfoName;
+            System.Threading.Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo(infoName);
+        }
+
         public static bool ChangeLanguage(string cultureName)
         {
             if (String.IsNullOrEmpty(cultureName))

@@ -10,7 +10,7 @@ namespace NowPlayingMonitor
 {
     public class MenuItemViewModel
     {
-        //public string? IconKind { get; set; }
+        public int MenuIndex { get; set; }
         public PackIconUniconsKind? IconKind { get; set; }
         public string? Label { get; set; }
         public UserControl? Content { get; set; }

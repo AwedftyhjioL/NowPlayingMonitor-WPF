@@ -16,6 +16,9 @@ using System.Windows.Controls;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using MahApps.Metro.IconPacks;
+using System.Windows;
+using ControlzEx.Theming;
+using System.Reflection;
 
 
 namespace NowPlayingMonitor
@@ -23,22 +26,55 @@ namespace NowPlayingMonitor
     public class MainWindowViewModel : ObservableObject
     {
         private UserControl? _currentContent;
+        private bool _isHamburgerMenuPaneOpen;
 
 
-        public ObservableCollection<MenuItemViewModel>? MenuItems { get; }
-        public ICommand? ItemClickCommand { get; }
+        public ObservableCollection<MenuItemViewModel>? MenuItems { get; private set; }
+
+        public ICommand? ItemClickCommand { get; private set; }
+        public ICommand? ChangeLanguageCommand { get; private set; }
+        public ICommand? RestartApplicationCommand { get; private set; }
+        public ICommand? ExitApplicationCommand { get; private set; }
+
+        public event Action? RequestSaveWindowState;
+        public event Action? RequestSaveAppState;
+        public event Action? RequestSwitchThemeLightDark;
+
+
 
         public MainWindowViewModel() 
         {
+            SetUpMenuItems();
+
+            SetUpCommand();
+
+        }
+
+        private void SetUpMenuItems()
+        {
             MenuItems = new ObservableCollection<MenuItemViewModel>
             {
-                new MenuItemViewModel { IconKind = PackIconUniconsKind.Home, Label =  Strings.Welcome , Content = new WelcomeTab() },
-                new MenuItemViewModel { IconKind = PackIconUniconsKind.Setting, Label = Strings.General , Content = new GeneralTab() },
-                new MenuItemViewModel { IconKind = PackIconUniconsKind.Monitor, Label = Strings.Monitor_Setting , Content = new MonitorSettingTab() },
+                new MenuItemViewModel { MenuIndex = 0, IconKind = PackIconUniconsKind.Home, Label =  Strings.Welcome, Content = new WelcomeTab() },
+                new MenuItemViewModel { MenuIndex = 1, IconKind = PackIconUniconsKind.Setting, Label = Strings.Settings, Content = new SettingsTab() },
+                new MenuItemViewModel { MenuIndex = 2, IconKind = PackIconUniconsKind.Monitor, Label = Strings.Monitor, Content = new MonitorTab() },
             };
 
-            ItemClickCommand = new RelayCommand<MenuItemViewModel>(ExecuteItemClick);
+            var welcomeTab = MenuItems.FirstOrDefault(item => item.Content is WelcomeTab)?.Content as WelcomeTab;
+            if (welcomeTab != null)
+            {
+                welcomeTab.LanguageChanged += ChangeLanguage;
+                welcomeTab.ThemeLightDarkChanged += SwitchThemeLightDark;
+            }
 
+            ActivateMenuItem(Properties.Settings.Default.ActivatedMenuItemIndex);
+        }
+
+        private void SetUpCommand()
+        {
+            ItemClickCommand = new RelayCommand<MenuItemViewModel>(ExecuteItemClick);
+            ChangeLanguageCommand = new RelayCommand<string>(ChangeLanguage);
+            RestartApplicationCommand = new RelayCommand(RestartApplication);
+            ExitApplicationCommand = new RelayCommand(ExitApplication);
         }
 
         private void ExecuteItemClick(MenuItemViewModel? menuItem)
@@ -46,9 +82,9 @@ namespace NowPlayingMonitor
             if (menuItem != null && menuItem.Content != null)
             {
                 CurrentContent = menuItem.Content;
+                Settings.Default.ActivatedMenuItemIndex = menuItem.MenuIndex;
             }
         }
-
 
         public UserControl? CurrentContent
         {
@@ -60,12 +96,52 @@ namespace NowPlayingMonitor
             }
         }
 
-        private bool _isHamburgerMenuPaneOpen;
+        private void ActivateMenuItem(int index)
+        {
+            if (MenuItems != null && MenuItems.Count > index)
+            {
+                ExecuteItemClick(MenuItems[index]);
+            }
+        }
+
         public bool IsHamburgerMenuPaneOpen
         {
             get => _isHamburgerMenuPaneOpen;
             set => SetProperty(ref _isHamburgerMenuPaneOpen, value);
         }
 
+        private void ChangeLanguage(string? language)
+        {
+            if (String.IsNullOrEmpty(language)) return;
+
+            string CurrentUICultureName = Thread.CurrentThread.CurrentUICulture.ToString();
+
+            if (language.Equals(CurrentUICultureName)) return;
+
+            if (!LocalizationManagerUtil.ChangeLanguage(language)) return;
+
+            RestartApplication();
+        }
+
+        
+
+        public void RestartApplication()
+        {
+            RequestSaveWindowState?.Invoke();
+            RequestSaveAppState?.Invoke();
+            ApplicationUtil.RestartApplicationProcess();
+        }
+
+        public void ExitApplication()
+        {
+            RequestSaveWindowState?.Invoke();
+            RequestSaveAppState?.Invoke();
+            ApplicationUtil.ExitApplicationProcess();
+        }
+
+        private void SwitchThemeLightDark()
+        {
+            RequestSwitchThemeLightDark?.Invoke();
+        }
     }
 }

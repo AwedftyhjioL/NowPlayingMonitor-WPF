@@ -8,11 +8,22 @@ using System.Threading.Tasks;
 
 namespace NowPlayingMonitor
 {
-    public class GeneralTabViewModel : INotifyPropertyChanged
+    public class SettingsTabViewModel : INotifyPropertyChanged
     {
 
         private bool _isStartWithMinimize;
         private bool _isMinimizeToTrayWhenClosed;
+
+        public SettingsTabViewModel()
+        {
+            RestoreState();
+        }
+
+        private void RestoreState()
+        {
+            _isStartWithMinimize = Settings.Default.IsStartWithMinimize;
+            _isMinimizeToTrayWhenClosed = Settings.Default.IsMinimizeToTrayWhenClosed;
+        }
 
         public bool IsStartWithMinimize
         {

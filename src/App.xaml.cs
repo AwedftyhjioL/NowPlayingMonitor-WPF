@@ -1,4 +1,6 @@
-﻿using System.Configuration;
+﻿using ControlzEx.Theming;
+using NowPlayingMonitor.Properties;
+using System.Configuration;
 using System.Data;
 using System.Windows;
 
@@ -15,7 +17,11 @@ namespace NowPlayingMonitor
 
             WPFLocalizeExtension.Engine.LocalizeDictionary.Instance.OutputMissingKeys = true;
 
+            LocalizationManagerUtil.LoadCultureInfo();
 
+            ApplicationUtil.LoadDefaultSetting();
+
+            ThemeManager.Current.ChangeTheme(this, Settings.Default.CurrentTheme);
         }
 
     }
