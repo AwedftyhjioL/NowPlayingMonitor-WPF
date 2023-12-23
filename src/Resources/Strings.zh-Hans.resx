@@ -192,4 +192,13 @@
   <data name="Settings" xml:space="preserve">
     <value>设置</value>
   </data>
+  <data name="Monitor_On_Startup" xml:space="preserve">
+    <value>启动时监控</value>
+  </data>
+  <data name="Spotify" xml:space="preserve">
+    <value>Spotify</value>
+  </data>
+  <data name="Start_Monitor" xml:space="preserve">
+    <value>开始监控</value>
+  </data>
 </root>

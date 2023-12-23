@@ -27,15 +27,15 @@ namespace NowPlayingMonitor
 
         public MainWindow()
         {
+            InitializeComponent();
+
             var viewModel = new MainWindowViewModel();
             DataContext = viewModel;
-
 
             viewModel.RequestSaveWindowState += () => SaveWindowState();
             viewModel.RequestSaveAppState += () => SaveAppState();
             viewModel.RequestSwitchThemeLightDark += () => SwitchThemeLightDark();
 
-            //this.Closing += MainWindow_Closing;
         }
 
 

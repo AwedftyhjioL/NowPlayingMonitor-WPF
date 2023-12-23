@@ -142,7 +142,7 @@
     <value>NowPlayingMonitor is an open-source tool designed for monitoring and recording information about the music currently being played.</value>
   </data>
   <data name="Show_App" xml:space="preserve">
-    <value>Show Application</value>
+    <value>Show App</value>
   </data>
   <data name="Exit" xml:space="preserve">
     <value>Exit</value>
@@ -191,5 +191,14 @@
   </data>
   <data name="Settings" xml:space="preserve">
     <value>Settings</value>
+  </data>
+  <data name="Monitor_On_Startup" xml:space="preserve">
+    <value>Monitor on startup</value>
+  </data>
+  <data name="Spotify" xml:space="preserve">
+    <value>Spotify</value>
+  </data>
+  <data name="Start_Monitor" xml:space="preserve">
+    <value>Start Monitor</value>
   </data>
 </root>

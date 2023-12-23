@@ -133,6 +133,15 @@ namespace NowPlayingMonitor {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Monitor on startup.
+        /// </summary>
+        public static string Monitor_On_Startup {
+            get {
+                return ResourceManager.GetString("Monitor_On_Startup", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Monitor.
         /// </summary>
         public static string Monitor_Setting {
@@ -196,7 +205,7 @@ namespace NowPlayingMonitor {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Show Application.
+        ///   Looks up a localized string similar to Show App.
         /// </summary>
         public static string Show_App {
             get {
@@ -210,6 +219,24 @@ namespace NowPlayingMonitor {
         public static string Silent_Start {
             get {
                 return ResourceManager.GetString("Silent_Start", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Spotify.
+        /// </summary>
+        public static string Spotify {
+            get {
+                return ResourceManager.GetString("Spotify", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Start Monitor.
+        /// </summary>
+        public static string Start_Monitor {
+            get {
+                return ResourceManager.GetString("Start_Monitor", resourceCulture);
             }
         }
         

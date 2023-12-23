@@ -84,7 +84,10 @@ namespace NowPlayingMonitor.Util
             }
         }
 
-        
+        public static string GetConfigFilePath()
+        {
+            return Path.Combine(PathUtil.GetCurrentDirectory() ?? "", "Config.xml");
+        }
 
     }
 }

@@ -23,6 +23,41 @@ namespace NowPlayingMonitor
         public MonitorTab()
         {
             InitializeComponent();
+
+            var viewModel = new MonitorTabViewModel();
+            DataContext = viewModel;
         }
+
+        private void ModesComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (!(sender is ComboBox comboBox)) return;
+            string mode = comboBox.Text;
+            if (Strings.Process_Name == mode)
+            {
+                SettingsContentControl.Content = null;
+                //SettingsContentControl.Content = new ProcessNameSettingsControl();
+            }
+            else if (Strings.Window_Title == mode)
+            {
+                SettingsContentControl.Content = null;
+                //SettingsContentControl.Content = new WindowTitleSettingsControl();
+            }
+            else if (Strings.Spotify == mode)
+            {
+                SettingsContentControl.Content = null;
+                //SettingsContentControl.Content = new SpotifySettingsControl();
+            }
+            else
+            {
+                SettingsContentControl.Content = null;
+            }
+
+
+        }
+
+
     }
+
+
+
 }

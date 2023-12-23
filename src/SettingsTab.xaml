@@ -9,15 +9,15 @@
              d:DesignHeight="450" d:DesignWidth="800">
 
 
-    <StackPanel Margin="30,30,30,30">
+    <StackPanel Margin="100,30,0,30" MaxWidth="800">
 
         <DockPanel Margin="0,0,0,10">
             <TextBlock Text="{x:Static local:Strings.Silent_Start}" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-            <mah:ToggleSwitch x:Name="ToggleSilentStart" IsOn="{Binding IsStartWithMinimize, Mode=TwoWay}" HorizontalAlignment="Right"/>
+            <mah:ToggleSwitch x:Name="ToggleSilentStart" IsOn="{Binding IsStartWithMinimize, Mode=TwoWay}" HorizontalAlignment="Right" OffContent="" OnContent=""/>
         </DockPanel>
         <DockPanel Margin="0,0,0,10">
             <TextBlock Text="{x:Static local:Strings.Always_Minimize_To_Tray}" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-            <mah:ToggleSwitch x:Name="ToggleAlwaysMinimizeToTray" IsOn="{Binding IsMinimizeToTrayWhenClosed, Mode=TwoWay}" HorizontalAlignment="Right"/>
+            <mah:ToggleSwitch x:Name="ToggleAlwaysMinimizeToTray" IsOn="{Binding IsMinimizeToTrayWhenClosed, Mode=TwoWay}" HorizontalAlignment="Right" OffContent="" OnContent=""/>
         </DockPanel>
 
     </StackPanel>
