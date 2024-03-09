@@ -25,8 +25,6 @@ namespace NowPlayingMonitor
 {
     public class MainWindowViewModel : ObservableObject
     {
-        private UserControl? _currentContent;
-        private bool _isHamburgerMenuPaneOpen;
 
 
         public ObservableCollection<MenuItemViewModel>? MenuItems { get; private set; }
@@ -56,7 +54,7 @@ namespace NowPlayingMonitor
             {
                 new MenuItemViewModel { MenuIndex = 0, IconKind = PackIconUniconsKind.Home, Label =  Strings.Welcome, Content = new WelcomeTab() },
                 new MenuItemViewModel { MenuIndex = 1, IconKind = PackIconUniconsKind.Setting, Label = Strings.Settings, Content = new SettingsTab() },
-                new MenuItemViewModel { MenuIndex = 2, IconKind = PackIconUniconsKind.Monitor, Label = Strings.Monitor, Content = new MonitorTab() },
+                new MenuItemViewModel { MenuIndex = 2, IconKind = PackIconUniconsKind.Monitor, Label = Strings.Monitor, Content = new MonitorTab(this) },
             };
 
             var welcomeTab = MenuItems.FirstOrDefault(item => item.Content is WelcomeTab)?.Content as WelcomeTab;
@@ -143,5 +141,15 @@ namespace NowPlayingMonitor
         {
             RequestSwitchThemeLightDark?.Invoke();
         }
+
+        public double WindowHeight
+        {
+            get { return _windowHeight; }
+            set { SetProperty(ref _windowHeight, value); }
+        }
+
+        private UserControl? _currentContent;
+        private bool _isHamburgerMenuPaneOpen;
+        private double _windowHeight;
     }
 }

@@ -20,15 +20,15 @@ namespace NowPlayingMonitor
     /// </summary>
     public partial class MonitorTab : UserControl
     {
-        public MonitorTab()
+        public MonitorTab(MainWindowViewModel mainWindowViewModel)
         {
             InitializeComponent();
 
-            var viewModel = new MonitorTabViewModel();
-            DataContext = viewModel;
+            _viewModel = new MonitorTabViewModel(mainWindowViewModel);
+            DataContext = _viewModel;
         }
 
-        private void ModesComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void ComboBoxMonitorMode_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (!(sender is ComboBox comboBox)) return;
             string mode = comboBox.Text;
@@ -55,7 +55,26 @@ namespace NowPlayingMonitor
 
         }
 
+        private void TextBoxProfileName_GotFocus(object sender, RoutedEventArgs e)
+        {
+            TextBoxProfileName.IsReadOnly = false;
+        }
 
+        private void TextBoxProfileName_LostFocus(object sender, RoutedEventArgs e)
+        {
+            TextBoxProfileName.IsReadOnly = true;
+        }
+
+        private void ButtonSelectWorkDirectory_Click(object sender, RoutedEventArgs e)
+        {
+            string dir = DialogUtil.GetDirectory();
+            if (!String.IsNullOrEmpty(dir))
+            {
+                _viewModel.WorkDirectory = dir;
+            }
+        }
+
+        private MonitorTabViewModel _viewModel;
     }
 
 

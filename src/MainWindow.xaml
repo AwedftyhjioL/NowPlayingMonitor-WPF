@@ -11,7 +11,7 @@
         mc:Ignorable="d"
         Title="NowPlayingMonitor" 
         Icon="pack://application:,,,/NowPlayingMonitor;component/Resources/image/Tray.ico"
-        ResizeMode="CanResizeWithGrip" MinWidth="900" MinHeight="500"
+        ResizeMode="CanResizeWithGrip" MinWidth="900" MinHeight="600"
         Width="900" Height="500"
         Loaded="Window_Loaded">
 

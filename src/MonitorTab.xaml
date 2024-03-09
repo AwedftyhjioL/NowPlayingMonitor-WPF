@@ -9,7 +9,8 @@
              xmlns:iconPacks="clr-namespace:MahApps.Metro.IconPacks;assembly=MahApps.Metro.IconPacks.ForkAwesome" 
              xmlns:iconPacks1="http://metro.mahapps.com/winfx/xaml/iconpacks"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="450" d:DesignWidth="800"
+             >
 
     <UserControl.Resources>
 
@@ -20,62 +21,74 @@
 
 
     <Grid>
-        <StackPanel Margin="30,10,0,10" MaxWidth="800">
-
+        <Grid>
+            <StackPanel Margin="30,10,0,10" MaxWidth="800">
+            <DockPanel Margin="0,10,0,10">
+                <TextBox x:Name="TextBoxProfileName" Text="{Binding ProfileName, Mode=TwoWay}" GotFocus="TextBoxProfileName_GotFocus" LostFocus="TextBoxProfileName_LostFocus" HorizontalAlignment="Left" VerticalAlignment="Center"  MinHeight="56" MaxHeight="56" MaxLength="130" BorderThickness="0" FontSize="32" FontWeight="Bold" IsReadOnly="True"/>
+            </DockPanel>
 
             <DockPanel Margin="0,10,0,10">
-
-                <mah:ToggleSwitch x:Name="ToggleStartMonitor" IsOn="{Binding IsStartMonitor, Mode=TwoWay}" HorizontalAlignment="Left" OffContent="" OnContent="" mah:HeaderedControlHelper.HeaderHorizontalContentAlignment="Left" MinHeight="35" MinWidth="65" MaxWidth="65"/>
+                <mah:ToggleSwitch x:Name="ToggleStartMonitor" IsOn="{Binding IsStartMonitor, Mode=TwoWay}" HorizontalAlignment="Left" OffContent="" OnContent="" mah:HeaderedControlHelper.HeaderHorizontalContentAlignment="Left" MinHeight="35" MinWidth="65" MaxWidth="65" Margin="5,0,0,0"/>
                 <TextBlock Text="{x:Static local:Strings.Start_Monitor}" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0,0,0,4"/>
-            </DockPanel>
-            <DockPanel Margin="0,10,0,10">
-                <TextBlock Text="{x:Static local:Strings.Work_Directory}" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5,0,5,0" />
+                </DockPanel>
+            </StackPanel>
+        </Grid>
+        
+        <Grid ScrollViewer.VerticalScrollBarVisibility="Auto">
+            <StackPanel Margin="30,130,0,10" MaxWidth="800">
 
-                <Button x:Name="ButtonSelectWorkDirectory" HorizontalAlignment="Right" VerticalAlignment="Top" Style="{StaticResource SquareButtonNoBorder}" Margin="10,3,80,3" DockPanel.Dock="Right">
-                    <iconPacks1:PackIconUnicons Kind="FolderOpen" Width="32" Height="32" VerticalAlignment="Center" HorizontalAlignment="Center" />
-                </Button>
+                <DockPanel>
+                    <StackPanel CanVerticallyScroll="True">
+                        <DockPanel Margin="0,10,0,10">
+                            <TextBlock Text="{x:Static local:Strings.Work_Directory}" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5,0,5,0" />
 
-                <Border Style="{StaticResource RoundedCornerBorder}"  Padding="10, 0, 10, 0"  Margin="5,0,5,0" MinHeight="35" MaxHeight="35" >
-                    <TextBlock x:Name="TextBlockSelectWorkDirectory" Foreground="{DynamicResource  MahApps.Brushes.ThemeForeground}" Background="{DynamicResource  MahApps.Brushes.ThemeBackground}"   MinWidth="260" HorizontalAlignment="Left" VerticalAlignment="Center" />
-                </Border>
+                            <Button x:Name="ButtonSelectWorkDirectory" Click="ButtonSelectWorkDirectory_Click" HorizontalAlignment="Right" VerticalAlignment="Top" Style="{StaticResource SquareButtonNoBorder}" Margin="10,3,80,3" DockPanel.Dock="Right">
+                                <iconPacks1:PackIconUnicons Kind="FolderOpen" Width="32" Height="32" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                            </Button>
+
+                            <Border Style="{StaticResource RoundedCornerBorder}"  Padding="0, 0, 0, 0"  Margin="5,0,5,0" MinHeight="35" MaxHeight="35" >
+                                <TextBox x:Name="TextBoxWorkDirectory" Text="{Binding WorkDirectory, Mode=TwoWay}" Foreground="{DynamicResource  MahApps.Brushes.ThemeForeground}" Background="{DynamicResource  MahApps.Brushes.ThemeBackground}"   MinWidth="260" HorizontalAlignment="Left" VerticalAlignment="Center" IsReadOnly="True" BorderThickness="0" FontSize="14"/>
+                            </Border>
+
+                        </DockPanel>
+
+                        <DockPanel Margin="0,10,0,10">
+                            <TextBlock Text="{x:Static local:Strings.Refresh_Frequency}" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5,0,5,0" />
+                            <mah:NumericUpDown x:Name="NumericUpDownRefreshFrequency" Value="{Binding RefreshFrequency, Mode=TwoWay}" Style="{StaticResource CustomNumericUpDownStyle}" ParsingNumberStyle="Integer" NumericInputMode="Decimal" Minimum="200" Interval="100" Maximum="3600000" Focusable="False" Margin="5,0,5,0" MinHeight="35" MaxHeight="35"/>
+                            <TextBlock Text="{x:Static local:Strings.Milisecond}" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0,0,0,0" />
+                        </DockPanel>
+
+
+                        <DockPanel Margin="0,10,0,10">
+                            <TextBlock Text="{x:Static local:Strings.Monitor_Mode}" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5,0,5,0" />
+                            <ComboBox x:Name="ComboBoxMonitorMode" Style="{StaticResource RoundedComboBoxStyle}" SelectedIndex="{Binding MonitorModeIndex, Mode=TwoWay}" SelectionChanged="ComboBoxMonitorMode_SelectionChanged" Margin="5,0,5,0" IsReadOnly="True" MinHeight="35" MinWidth="160" MaxWidth="160" HorizontalAlignment="Left" >
+                                <ComboBoxItem Content="{x:Static local:Strings.Process_Name}"></ComboBoxItem>
+                                <ComboBoxItem Content="{x:Static local:Strings.Window_Title}" Visibility="Collapsed"></ComboBoxItem>
+                                <ComboBoxItem Content="{x:Static local:Strings.Spotify}" Visibility="Collapsed"></ComboBoxItem>
+                            </ComboBox>
+
+                        </DockPanel>
+                    </StackPanel>
+                </DockPanel>
+
+
+
+                <DockPanel Margin="0,10,0,10">
+                    <mah:ContentControlEx x:Name="SettingsContentControl">
+
+                    </mah:ContentControlEx>
+
+                </DockPanel>
+
+                <DockPanel Margin="0,10,0,10">
+                </DockPanel>
+
+
+
+
+            </StackPanel>
+        </Grid>
                 
-            </DockPanel>
-
-            <DockPanel Margin="0,10,0,10">
-                <TextBlock Text="{x:Static local:Strings.Refresh_Frequency}" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5,0,5,0" />
-                <mah:NumericUpDown x:Name="NumericUpDownRefreshFrequency" Style="{StaticResource CustomNumericUpDownStyle}" ParsingNumberStyle="Integer" NumericInputMode="Decimal" Minimum="200" Value="500" Interval="100" Maximum="3600000" Focusable="False" Margin="5,0,5,0" MinHeight="35" MaxHeight="35"/>
-                <TextBlock Text="{x:Static local:Strings.Milisecond}" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0,0,0,0" />
-            </DockPanel>
-
-
-            <DockPanel Margin="0,10,0,10">
-                <TextBlock Text="{x:Static local:Strings.Monitor_Mode}" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5,0,5,0" />
-                <ComboBox x:Name="ModesComboBox" Style="{StaticResource RoundedComboBoxStyle}" SelectionChanged="ModesComboBox_SelectionChanged" Margin="5,0,5,0" IsReadOnly="True" MinHeight="35" MinWidth="160" MaxWidth="160" HorizontalAlignment="Left" >
-                    <ComboBoxItem Content="{x:Static local:Strings.Process_Name}"></ComboBoxItem>
-                    <ComboBoxItem Content="{x:Static local:Strings.Window_Title}" Visibility="Collapsed"></ComboBoxItem>
-                    <ComboBoxItem Content="{x:Static local:Strings.Spotify}" Visibility="Collapsed"></ComboBoxItem>
-                </ComboBox>
-
-            </DockPanel>
-
-            
-            
-            
-            
-            <DockPanel Margin="0,10,0,10">
-                <mah:ContentControlEx x:Name="SettingsContentControl">
-                    
-                </mah:ContentControlEx>
-
-            </DockPanel>
-
-            <DockPanel Margin="0,10,0,10">
-            </DockPanel>
-
-
-
-
-        </StackPanel>
 
     </Grid>
 </UserControl>

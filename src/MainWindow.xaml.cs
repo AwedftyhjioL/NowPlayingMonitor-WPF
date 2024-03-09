@@ -36,8 +36,19 @@ namespace NowPlayingMonitor
             viewModel.RequestSaveAppState += () => SaveAppState();
             viewModel.RequestSwitchThemeLightDark += () => SwitchThemeLightDark();
 
+
+            this.SizeChanged += MainWindow_SizeChanged;
+
         }
 
+        private void MainWindow_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            var viewModel = this.DataContext as MainWindowViewModel;
+            if (viewModel != null)
+            {
+                viewModel.WindowHeight = e.NewSize.Height;
+            }
+        }
 
         private void TabControlMain_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {

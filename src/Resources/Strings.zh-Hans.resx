@@ -199,6 +199,6 @@
     <value>Spotify</value>
   </data>
   <data name="Start_Monitor" xml:space="preserve">
-    <value>开始监控</value>
+    <value>启用监控</value>
   </data>
 </root>

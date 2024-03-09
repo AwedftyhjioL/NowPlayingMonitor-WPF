@@ -19,6 +19,8 @@ namespace NowPlayingMonitor
         {
             try
             {
+                if (string.IsNullOrEmpty(section) || string.IsNullOrEmpty(key))
+                    return null;
                 var stringValue = Read(section, key);
                 if (stringValue != null)
                 {
@@ -37,11 +39,36 @@ namespace NowPlayingMonitor
             }
         }
 
+        public static int? ReadInt(string section, string key)
+        {
+            try
+            {
+                if (string.IsNullOrEmpty(section) || string.IsNullOrEmpty(key))
+                    return null;
+                var stringValue = Read(section, key);
+                if (stringValue != null)
+                {
+                    int intValue;
+                    if (int.TryParse(stringValue, out intValue))
+                    {
+                        return intValue;
+                    }
+                }
+                return null;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error reading XML: {ex.Message}");
+                return null;
+            }
+        }
 
         public static string? Read(string section, string key)
         {
             try
             {
+                if(string.IsNullOrEmpty(section) || string.IsNullOrEmpty(key)) 
+                    return null;
                 var keyElement = FindElement(_configFilePath, section, key);
                 return keyElement?.Value;
             }
